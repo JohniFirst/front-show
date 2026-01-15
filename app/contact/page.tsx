@@ -41,22 +41,22 @@ export default function ContactPage() {
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            Contact Us
+            联系我们
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-300">
-            Have questions? We&#39;d love to hear from you
+            有问题吗？我们很想听到您的声音
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-8">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-              Send us a message
+              给我们发送消息
             </h2>
 
             {submitSuccess && (
               <div className="mb-6 p-4 bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-200 rounded-lg">
-                Your message has been sent successfully!
+                您的消息已成功发送！
               </div>
             )}
 
@@ -66,7 +66,7 @@ export default function ContactPage() {
                   htmlFor="name"
                   className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
                 >
-                  Name
+                  姓名
                 </label>
                 <input
                   type="text"
@@ -84,7 +84,7 @@ export default function ContactPage() {
                   htmlFor="email"
                   className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
                 >
-                  Email
+                  邮箱
                 </label>
                 <input
                   type="email"
@@ -102,7 +102,7 @@ export default function ContactPage() {
                   htmlFor="subject"
                   className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
                 >
-                  Subject
+                  主题
                 </label>
                 <input
                   type="text"
@@ -120,7 +120,7 @@ export default function ContactPage() {
                   htmlFor="message"
                   className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
                 >
-                  Message
+                  消息
                 </label>
                 <textarea
                   id="message"
@@ -142,7 +142,7 @@ export default function ContactPage() {
                     : "bg-indigo-600 hover:bg-indigo-700"
                 }`}
               >
-                {isSubmitting ? "Sending..." : "Send Message"}
+                {isSubmitting ? "发送中..." : "发送消息"}
               </button>
             </form>
           </div>
@@ -150,7 +150,7 @@ export default function ContactPage() {
           <div>
             <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-8 mb-8">
               <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-                Contact Information
+                联系信息
               </h2>
 
               <div className="space-y-6">
@@ -173,10 +173,10 @@ export default function ContactPage() {
                   </div>
                   <div className="ml-4">
                     <h3 className="text-lg font-medium text-gray-900 dark:text-white">
-                      Phone
+                      电话
                     </h3>
                     <p className="text-gray-600 dark:text-gray-300 mt-1">
-                      +1 (555) 123-4567
+                      +86 (010) 1234-5678
                     </p>
                   </div>
                 </div>
@@ -200,7 +200,7 @@ export default function ContactPage() {
                   </div>
                   <div className="ml-4">
                     <h3 className="text-lg font-medium text-gray-900 dark:text-white">
-                      Email
+                      邮箱
                     </h3>
                     <p className="text-gray-600 dark:text-gray-300 mt-1">
                       contact@example.com
@@ -233,12 +233,12 @@ export default function ContactPage() {
                   </div>
                   <div className="ml-4">
                     <h3 className="text-lg font-medium text-gray-900 dark:text-white">
-                      Office
+                      办公室
                     </h3>
                     <p className="text-gray-600 dark:text-gray-300 mt-1">
-                      123 Business Avenue
+                      北京市朝阳区建国路1号
                       <br />
-                      San Francisco, CA 94107
+                      中国 北京 100000
                     </p>
                   </div>
                 </div>
@@ -247,31 +247,27 @@ export default function ContactPage() {
 
             <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-8">
               <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-                Business Hours
+                营业时间
               </h2>
 
               <div className="space-y-3">
                 <div className="flex justify-between">
                   <span className="text-gray-600 dark:text-gray-300">
-                    Monday - Friday
+                    周一 - 周五
                   </span>
                   <span className="text-gray-900 dark:text-white">
-                    9:00 AM - 6:00 PM
+                    9:00 - 18:00
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-600 dark:text-gray-300">
-                    Saturday
-                  </span>
+                  <span className="text-gray-600 dark:text-gray-300">周六</span>
                   <span className="text-gray-900 dark:text-white">
-                    10:00 AM - 4:00 PM
+                    10:00 - 16:00
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-600 dark:text-gray-300">
-                    Sunday
-                  </span>
-                  <span className="text-gray-900 dark:text-white">Closed</span>
+                  <span className="text-gray-600 dark:text-gray-300">周日</span>
+                  <span className="text-gray-900 dark:text-white">休息</span>
                 </div>
               </div>
             </div>
@@ -283,7 +279,7 @@ export default function ContactPage() {
             href="/"
             className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700"
           >
-            Back to Home
+            返回首页
           </Link>
         </div>
       </div>

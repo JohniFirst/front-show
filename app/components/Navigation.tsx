@@ -9,12 +9,12 @@ export default function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navLinks = [
-    { name: "Home", href: "/" },
-    { name: "About", href: "/about" },
-    { name: "Services", href: "/services" },
-    { name: "Portfolio", href: "/portfolio" },
-    { name: "Blog", href: "/blog" },
-    { name: "Contact", href: "/contact" },
+    { name: "首页", href: "/" },
+    { name: "关于", href: "/about" },
+    { name: "服务", href: "/services" },
+    { name: "作品集", href: "/portfolio" },
+    { name: "博客", href: "/blog" },
+    { name: "联系", href: "/contact" },
   ];
 
   return (

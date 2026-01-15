@@ -6,11 +6,10 @@ export default function Home() {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-            Welcome to MyApp
+            欢迎来到我的应用
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-10">
-            Discover amazing features and services tailored just for you.
-            Explore our offerings below.
+            发现为您量身定制的精彩功能和服务。 探索我们下面的提供的服务。
           </p>
 
           <div className="flex flex-col sm:flex-row justify-center gap-4">
@@ -18,13 +17,13 @@ export default function Home() {
               href="/about"
               className="px-8 py-3 bg-indigo-600 text-white font-medium rounded-lg hover:bg-indigo-700 transition-colors"
             >
-              Learn About Us
+              了解我们
             </Link>
             <Link
               href="/contact"
               className="px-8 py-3 bg-white dark:bg-gray-800 text-gray-900 dark:text-white font-medium rounded-lg border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
             >
-              Contact Us
+              联系我们
             </Link>
           </div>
         </div>
@@ -48,17 +47,16 @@ export default function Home() {
               </svg>
             </div>
             <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
-              Explore Services
+              探索服务
             </h3>
             <p className="text-gray-600 dark:text-gray-300 mb-4">
-              Discover our wide range of professional services designed to meet
-              your business needs.
+              发现我们广泛的专业服务，旨在满足 您的业务需求。
             </p>
             <Link
               href="/services"
               className="text-indigo-600 dark:text-indigo-400 font-medium hover:text-indigo-800 dark:hover:text-indigo-300"
             >
-              View Services
+              查看服务
             </Link>
           </div>
 
@@ -80,17 +78,16 @@ export default function Home() {
               </svg>
             </div>
             <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
-              View Portfolio
+              查看作品集
             </h3>
             <p className="text-gray-600 dark:text-gray-300 mb-4">
-              Check out our portfolio to see examples of our successful projects
-              and satisfied clients.
+              查看我们的作品集，了解我们成功项目 和满意客户的案例。
             </p>
             <Link
               href="/portfolio"
               className="text-indigo-600 dark:text-indigo-400 font-medium hover:text-indigo-800 dark:hover:text-indigo-300"
             >
-              View Portfolio
+              查看作品集
             </Link>
           </div>
 
@@ -112,34 +109,32 @@ export default function Home() {
               </svg>
             </div>
             <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
-              Read Our Blog
+              阅读我们的博客
             </h3>
             <p className="text-gray-600 dark:text-gray-300 mb-4">
-              Stay updated with the latest industry insights and tips from our
-              expert team.
+              随时了解我们专家团队提供的最新 行业见解和技巧。
             </p>
             <Link
               href="/blog"
               className="text-indigo-600 dark:text-indigo-400 font-medium hover:text-indigo-800 dark:hover:text-indigo-300"
             >
-              Read Blog
+              阅读博客
             </Link>
           </div>
         </div>
 
         <div className="bg-gradient-to-r from-indigo-500 to-purple-600 rounded-2xl p-12 text-center">
           <h2 className="text-3xl font-bold text-white mb-4">
-            Ready to get started?
+            准备好开始了吗？
           </h2>
           <p className="text-indigo-100 text-lg mb-6 max-w-2xl mx-auto">
-            Join thousands of satisfied customers who have transformed their
-            business with our solutions.
+            加入数以千计使用我们的解决方案 转型业务的满意客户。
           </p>
           <Link
             href="/contact"
             className="inline-block px-8 py-3 bg-white text-indigo-600 font-medium rounded-lg hover:bg-gray-100 transition-colors"
           >
-            Get in Touch
+            联系我们
           </Link>
         </div>
       </div>

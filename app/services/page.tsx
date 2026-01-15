@@ -3,9 +3,9 @@ import Link from "next/link";
 export default function ServicesPage() {
   const services = [
     {
-      title: "Web Development",
+      title: "网站开发",
       description:
-        "Custom websites and web applications built with modern technologies like React, Next.js, and Node.js.",
+        "使用React、Next.js和Node.js等现代技术构建的定制网站和网络应用程序。",
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -24,9 +24,9 @@ export default function ServicesPage() {
       ),
     },
     {
-      title: "Mobile Apps",
+      title: "移动应用",
       description:
-        "Native and cross-platform mobile applications for iOS and Android using React Native and Flutter.",
+        "使用React Native和Flutter为iOS和Android开发的原生和跨平台移动应用程序。",
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -45,9 +45,8 @@ export default function ServicesPage() {
       ),
     },
     {
-      title: "UI/UX Design",
-      description:
-        "Beautiful and intuitive user interfaces designed with a focus on user experience and accessibility.",
+      title: "UI/UX设计",
+      description: "美观直观的用户界面设计，专注于用户体验和可访问性。",
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -66,9 +65,8 @@ export default function ServicesPage() {
       ),
     },
     {
-      title: "E-commerce Solutions",
-      description:
-        "Complete online store setups with secure payment processing and inventory management.",
+      title: "电子商务解决方案",
+      description: "完整的在线商店设置，包含安全的支付处理和库存管理。",
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -87,9 +85,9 @@ export default function ServicesPage() {
       ),
     },
     {
-      title: "Cloud Solutions",
+      title: "云解决方案",
       description:
-        "Scalable cloud infrastructure setup and management on AWS, Azure, and Google Cloud.",
+        "在AWS、Azure和Google Cloud上进行可扩展的云基础设施设置和管理。",
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -108,9 +106,8 @@ export default function ServicesPage() {
       ),
     },
     {
-      title: "SEO Optimization",
-      description:
-        "Improve your website&#39;s visibility on search engines with our comprehensive SEO strategies.",
+      title: "SEO优化",
+      description: "通过我们全面的SEO策略提高您网站在搜索引擎上的可见度。",
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -135,11 +132,10 @@ export default function ServicesPage() {
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            Our Services
+            我们的服务
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            We offer a wide range of digital services to help your business grow
-            and succeed in the online world.
+            我们提供广泛的数字服务，帮助您的业务增长 并在网络世界中取得成功。
           </p>
         </div>
 
@@ -162,24 +158,23 @@ export default function ServicesPage() {
 
         <div className="bg-gradient-to-r from-indigo-500 to-purple-600 rounded-2xl p-10 text-center mb-16">
           <h2 className="text-3xl font-bold text-white mb-4">
-            Ready to get started?
+            准备好开始了吗？
           </h2>
           <p className="text-indigo-100 text-lg mb-6 max-w-2xl mx-auto">
-            Contact us today to discuss your project and discover how our
-            services can help your business grow.
+            今天就联系我们讨论您的项目，了解我们的 服务如何帮助您的业务增长。
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Link
               href="/contact"
               className="px-8 py-3 bg-white text-indigo-600 font-medium rounded-lg hover:bg-gray-100 transition-colors"
             >
-              Get in Touch
+              联系我们
             </Link>
             <Link
               href="/about"
               className="px-8 py-3 bg-transparent text-white font-medium rounded-lg border border-white hover:bg-white/10 transition-colors"
             >
-              Learn More About Us
+              了解更多关于我们的信息
             </Link>
           </div>
         </div>
@@ -187,7 +182,7 @@ export default function ServicesPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
           <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-8">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-              Why Choose Us?
+              为什么选择我们？
             </h2>
             <ul className="space-y-4">
               <li className="flex items-start">
@@ -197,8 +192,8 @@ export default function ServicesPage() {
                   </span>
                 </div>
                 <span className="text-gray-600 dark:text-gray-300">
-                  <strong>Expert Team:</strong> Our team consists of experienced
-                  professionals with years of industry expertise.
+                  <strong>专业团队:</strong> 我们的团队由具有多年行业经验的
+                  专业人士组成。
                 </span>
               </li>
               <li className="flex items-start">
@@ -208,8 +203,8 @@ export default function ServicesPage() {
                   </span>
                 </div>
                 <span className="text-gray-600 dark:text-gray-300">
-                  <strong>Quality Guarantee:</strong> We deliver high-quality
-                  solutions that meet your business objectives.
+                  <strong>质量保证:</strong> 我们提供高质量的
+                  解决方案，满足您的业务目标。
                 </span>
               </li>
               <li className="flex items-start">
@@ -219,8 +214,8 @@ export default function ServicesPage() {
                   </span>
                 </div>
                 <span className="text-gray-600 dark:text-gray-300">
-                  <strong>Timely Delivery:</strong> We respect deadlines and
-                  ensure timely delivery of projects.
+                  <strong>准时交付:</strong> 我们尊重截止日期并
+                  确保项目及时交付。
                 </span>
               </li>
               <li className="flex items-start">
@@ -230,8 +225,8 @@ export default function ServicesPage() {
                   </span>
                 </div>
                 <span className="text-gray-600 dark:text-gray-300">
-                  <strong>Ongoing Support:</strong> We provide continuous
-                  support and maintenance after project completion.
+                  <strong>持续支持:</strong> 我们在项目完成后提供持续的
+                  支持和维护。
                 </span>
               </li>
             </ul>
@@ -239,7 +234,7 @@ export default function ServicesPage() {
 
           <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-8">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-              Our Process
+              我们的流程
             </h2>
             <div className="space-y-6">
               <div className="flex">
@@ -250,11 +245,10 @@ export default function ServicesPage() {
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                    Discovery
+                    需求分析
                   </h3>
                   <p className="text-gray-600 dark:text-gray-300 mt-1">
-                    We start by understanding your business goals, requirements,
-                    and target audience.
+                    我们首先了解您的业务目标、要求和 目标受众。
                   </p>
                 </div>
               </div>
@@ -266,11 +260,10 @@ export default function ServicesPage() {
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                    Design & Planning
+                    设计与规划
                   </h3>
                   <p className="text-gray-600 dark:text-gray-300 mt-1">
-                    We create wireframes, mockups, and detailed project plans
-                    for your approval.
+                    我们创建线框图、模型和详细的项目计划 供您审批。
                   </p>
                 </div>
               </div>
@@ -282,11 +275,10 @@ export default function ServicesPage() {
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                    Development
+                    开发
                   </h3>
                   <p className="text-gray-600 dark:text-gray-300 mt-1">
-                    Our developers bring the designs to life with clean,
-                    efficient code.
+                    我们的开发人员使用干净、高效的代码 让设计变为现实。
                   </p>
                 </div>
               </div>
@@ -298,11 +290,10 @@ export default function ServicesPage() {
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                    Launch & Support
+                    上线与支持
                   </h3>
                   <p className="text-gray-600 dark:text-gray-300 mt-1">
-                    We deploy your project and provide ongoing support and
-                    maintenance.
+                    我们部署您的项目并提供持续的支持和 维护。
                   </p>
                 </div>
               </div>
@@ -315,7 +306,7 @@ export default function ServicesPage() {
             href="/"
             className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700"
           >
-            Back to Home
+            返回首页
           </Link>
         </div>
       </div>
