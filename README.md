@@ -1,51 +1,76 @@
-# 我的应用
+# Front Show Portfolio
 
-这是一个使用 Next.js 构建的现代化应用程序，具有流畅的动画效果和中文界面。
+This is a [Next.js](https://nextjs.org/) portfolio project deployed to GitHub Pages.
 
-## 功能特性
+## Deployment to GitHub Pages
 
-- 中文用户界面
-- 博客系统，支持 Markdown 格式文章
-- GSAP 驱动的流畅动画效果
-- 响应式设计
-- 静态站点生成支持
+### Automatic Deployment (Recommended)
 
-## 动画效果
+The project is configured to automatically deploy to GitHub Pages when you push to the main branch:
 
-- 主标题打字机效果
-- 页面元素渐入动画
-- 卡片悬停效果
-- 浮动装饰元素
+1. Make sure your repository is named `front-show` (or update the `basePath` in `next.config.ts` if it has a different name)
+2. Push your changes to the `main` branch
+3. GitHub Actions will automatically build and deploy your site
+4. Your site will be available at `https://JohniFirst.github.io/front-show`
 
-## 静态站点部署
+> **Important**: The `.nojekyll` file is automatically created during the build process to ensure GitHub Pages serves the `_next` directory correctly. When deployed to the `gh-pages` branch, this file tells GitHub not to process the site with Jekyll, allowing files and directories starting with `_` (like `_next`) to be served properly.
 
-此项目支持静态站点导出，适用于 CDN 或静态托管服务：
+### Manual Deployment
+
+If you prefer to deploy manually, you can run:
 
 ```bash
-npm run build
+npm run deploy
 ```
 
-构建完成后，静态文件将生成在 `out` 目录中，可以直接部署到任何静态托管服务。
+This will build your project and push the static files to the `gh-pages` branch.
 
-## 开发脚本
+## Getting Started
 
-- `npm run dev` - 启动开发服务器
-- `npm run build` - 构建生产版本（包含静态导出）
-- `npm run start` - 启动生产服务器
-- `npm run lint` - 运行代码检查
+First, run the development server:
 
-## 技术栈
+```bash
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+
+## Features
+
+- Chinese user interface
+- Blog system with Markdown support
+- GSAP-driven smooth animations
+- Responsive design
+- Static site generation
+
+## Animations
+
+- Typewriter effect for main titles
+- Fade-in animations for page elements
+- Hover effects for cards
+- Floating decorative elements
+
+## Development Scripts
+
+- `npm run dev` - Start the development server
+- `npm run build` - Build the production version (including static export)
+- `npm run start` - Start the production server
+- `npm run lint` - Run code linting
+
+## Tech Stack
 
 - Next.js 16
 - React 19
 - TypeScript
 - Tailwind CSS
-- GSAP (动画库)
-- Markdown 解析
+- GSAP (animation library)
+- Markdown parsing
 
-## 目录结构
+## Directory Structure
 
-- `app/` - Next.js App Router 页面
-- `content/posts/` - Markdown 博客文章
-- `components/` - React 组件
-- `public/` - 静态资源
+- `app/` - Next.js App Router pages
+- `content/posts/` - Markdown blog posts
+- `components/` - React components
+- `public/` - Static assets

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Page Not Found</title>
+	<script type="text/javascript">
+		// 尝试重定向到根路径以处理路由问题
+		(function () {
+			var redirect = localStorage.getItem("__vercel_analytics_first_load");
+			if (redirect === null) {
+				localStorage.setItem("__vercel_analytics_first_load", "1");
+				window.location.href = "/";
+			}
+		})();
+	</script>
+</head>
+
+<body>
+	<h1>404: Page Not Found</h1>
+	<p>The requested page could not be found.</p>
+	<a href="/">Go back to the homepage</a>
+</body>
+
+</html>

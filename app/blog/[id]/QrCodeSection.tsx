@@ -1,18 +1,19 @@
 "use client";
 
-import dynamic from "next/dynamic";
-
-const DynamicQRCode = dynamic(() => import("qrcode.react"), { ssr: false });
+import { QRCodeCanvas } from "qrcode.react";
+import { useEffect, useState } from "react";
 
 interface QrCodeSectionProps {
   articleId: string;
 }
 
 export default function QrCodeSection({ articleId }: QrCodeSectionProps) {
-  const currentUrl =
-    typeof window !== "undefined"
-      ? `${window.location.origin}/blog/${articleId}`
-      : "";
+  const [url, setUrl] = useState("");
+
+  useEffect(() => {
+    // 在客户端设置URL以确保window对象可用
+    setUrl(`${window.location.origin}/blog/${articleId}`);
+  }, [articleId]);
 
   return (
     <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-8 mb-8">
@@ -25,7 +26,15 @@ export default function QrCodeSection({ articleId }: QrCodeSectionProps) {
 
       <div className="flex flex-col items-center">
         <div className="bg-white p-4 rounded-lg shadow-inner inline-block">
-          {currentUrl && <DynamicQRCode value={currentUrl} size={200} />}
+          {url && (
+            <QRCodeCanvas
+              value={url}
+              size={200}
+              bgColor={"#ffffff"}
+              fgColor={"#000000"}
+              level={"H"}
+            />
+          )}
         </div>
         <p className="mt-4 text-gray-600 dark:text-gray-400 text-sm">
           扫描二维码在移动设备上阅读
