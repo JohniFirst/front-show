@@ -1,4 +1,6 @@
 import Link from "next/link";
+import Navigation from "../components/Navigation";
+import GsapElementAnimation from "../components/GsapElementAnimation";
 
 export default function PortfolioPage() {
   const projects = [
@@ -59,119 +61,134 @@ export default function PortfolioPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-zinc-50 dark:bg-black py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
-          <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            我们的作品集
-          </h1>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            探索我们成功的项目集锦，了解我们如何帮助企业实现数字化转型。
-          </p>
-        </div>
-
-        <div className="flex justify-center mb-12">
-          <div className="inline-flex flex-wrap justify-center gap-2 bg-white dark:bg-gray-900 rounded-lg p-2">
-            <button className="px-4 py-2 text-sm font-medium rounded-md bg-indigo-600 text-white">
-              所有项目
-            </button>
-            <button className="px-4 py-2 text-sm font-medium rounded-md text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800">
-              网络应用
-            </button>
-            <button className="px-4 py-2 text-sm font-medium rounded-md text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800">
-              移动应用
-            </button>
-            <button className="px-4 py-2 text-sm font-medium rounded-md text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800">
-              仪表板
-            </button>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {projects.map((project) => (
-            <div
-              key={project.id}
-              className="bg-white dark:bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
-            >
-              <div className="h-48 overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                />
-              </div>
-              <div className="p-6">
-                <div className="flex justify-between items-start mb-3">
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white">
-                    {project.title}
-                  </h3>
-                  <span className="text-xs font-medium px-2.5 py-0.5 rounded-full bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200">
-                    {project.category}
-                  </span>
-                </div>
-                <p className="text-gray-600 dark:text-gray-300 mb-4">
-                  {project.description}
+    <>
+      <Navigation />
+      <div className="min-h-screen">
+        <section className="bg-zinc-50 dark:bg-black py-12 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-6xl mx-auto">
+            <GsapElementAnimation animationType="fadeIn" delay={0.2}>
+              <div className="text-center mb-16">
+                <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+                  我们的作品集
+                </h1>
+                <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                  探索我们成功的项目集锦，了解我们如何帮助企业实现数字化转型。
                 </p>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tags.map((tag, index) => (
-                    <span
-                      key={index}
-                      className="text-xs font-medium px-2.5 py-0.5 rounded bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-                <button className="text-indigo-600 dark:text-indigo-400 font-medium hover:text-indigo-800 dark:hover:text-indigo-300 text-sm flex items-center">
-                  查看详情
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-4 w-4 ml-1"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 5l7 7-7 7"
-                    />
-                  </svg>
-                </button>
               </div>
-            </div>
-          ))}
-        </div>
+            </GsapElementAnimation>
 
-        <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-8 mb-16">
-          <div className="flex flex-col md:flex-row items-center justify-between">
-            <div className="mb-6 md:mb-0 md:mr-6">
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
-                准备好启动您的项目？
-              </h2>
-              <p className="text-gray-600 dark:text-gray-300">
-                让我们讨论您的想法，让您的愿景变成现实。
-              </p>
-            </div>
-            <Link
-              href="/contact"
-              className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700"
-            >
-              联系我们
-            </Link>
+            <GsapElementAnimation animationType="slideIn" delay={0.4}>
+              <div className="flex justify-center mb-12">
+                <div className="inline-flex flex-wrap justify-center gap-2 bg-white dark:bg-gray-900 rounded-lg p-2">
+                  <button className="px-4 py-2 text-sm font-medium rounded-md bg-indigo-600 text-white">
+                    所有项目
+                  </button>
+                  <button className="px-4 py-2 text-sm font-medium rounded-md text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800">
+                    网络应用
+                  </button>
+                  <button className="px-4 py-2 text-sm font-medium rounded-md text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800">
+                    移动应用
+                  </button>
+                  <button className="px-4 py-2 text-sm font-medium rounded-md text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800">
+                    仪表板
+                  </button>
+                </div>
+              </div>
+            </GsapElementAnimation>
+
+            <GsapElementAnimation animationType="slideIn" delay={0.6}>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+                {projects.map((project) => (
+                  <div
+                    key={project.id}
+                    className="bg-white dark:bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
+                  >
+                    <div className="h-48 overflow-hidden">
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                      />
+                    </div>
+                    <div className="p-6">
+                      <div className="flex justify-between items-start mb-3">
+                        <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+                          {project.title}
+                        </h3>
+                        <span className="text-xs font-medium px-2.5 py-0.5 rounded-full bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200">
+                          {project.category}
+                        </span>
+                      </div>
+                      <p className="text-gray-600 dark:text-gray-300 mb-4">
+                        {project.description}
+                      </p>
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        {project.tags.map((tag, index) => (
+                          <span
+                            key={index}
+                            className="text-xs font-medium px-2.5 py-0.5 rounded bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                      <button className="text-indigo-600 dark:text-indigo-400 font-medium hover:text-indigo-800 dark:hover:text-indigo-300 text-sm flex items-center">
+                        查看详情
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="h-4 w-4 ml-1"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M9 5l7 7-7 7"
+                          />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </GsapElementAnimation>
+
+            <GsapElementAnimation animationType="fadeIn" delay={0.8}>
+              <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-8 mb-16">
+                <div className="flex flex-col md:flex-row items-center justify-between">
+                  <div className="mb-6 md:mb-0 md:mr-6">
+                    <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+                      准备好启动您的项目？
+                    </h2>
+                    <p className="text-gray-600 dark:text-gray-300">
+                      让我们讨论您的想法，让您的愿景变成现实。
+                    </p>
+                  </div>
+                  <Link
+                    href="/contact"
+                    className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700"
+                  >
+                    联系我们
+                  </Link>
+                </div>
+              </div>
+            </GsapElementAnimation>
+
+            <GsapElementAnimation animationType="fadeIn" delay={1.0}>
+              <div className="text-center">
+                <Link
+                  href="/"
+                  className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700"
+                >
+                  返回首页
+                </Link>
+              </div>
+            </GsapElementAnimation>
           </div>
-        </div>
-
-        <div className="text-center">
-          <Link
-            href="/"
-            className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700"
-          >
-            返回首页
-          </Link>
-        </div>
+        </section>
       </div>
-    </div>
+    </>
   );
 }
