@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "static-build": "cross-env NODE_ENV=production next build"
+    "static-build": "cross-env NODE_ENV=production next build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d out -t true"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
@@ -28,6 +30,7 @@
     "cross-env": "^7.0.3",
     "eslint": "^9",
     "eslint-config-next": "16.1.2",
+    "gh-pages": "^6.3.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
