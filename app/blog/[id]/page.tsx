@@ -48,6 +48,21 @@ async function getBlogPost(id: string): Promise<BlogPost | null> {
   }
 }
 
+// 生成静态参数
+export async function generateStaticParams() {
+  const fs = await import("fs");
+  const path = await import("path");
+  
+  const postsDirectory = path.join(process.cwd(), 'content', 'posts');
+  const filenames = fs.readdirSync(postsDirectory);
+  
+  return filenames.map(filename => {
+    return {
+      id: filename.replace(/\.md$/, ''), // 移除 .md 扩展名
+    };
+  });
+}
+
 export default async function BlogPostPage({
   params,
 }: {

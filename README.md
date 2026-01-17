@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 我的应用
 
-## Getting Started
+这是一个使用 Next.js 构建的现代化应用程序，具有流畅的动画效果和中文界面。
 
-First, run the development server:
+## 功能特性
+
+- 中文用户界面
+- 博客系统，支持 Markdown 格式文章
+- GSAP 驱动的流畅动画效果
+- 响应式设计
+- 静态站点生成支持
+
+## 动画效果
+
+- 主标题打字机效果
+- 页面元素渐入动画
+- 卡片悬停效果
+- 浮动装饰元素
+
+## 静态站点部署
+
+此项目支持静态站点导出，适用于 CDN 或静态托管服务：
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+构建完成后，静态文件将生成在 `out` 目录中，可以直接部署到任何静态托管服务。
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 开发脚本
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `npm run dev` - 启动开发服务器
+- `npm run build` - 构建生产版本（包含静态导出）
+- `npm run start` - 启动生产服务器
+- `npm run lint` - 运行代码检查
 
-## Learn More
+## 技术栈
 
-To learn more about Next.js, take a look at the following resources:
+- Next.js 16
+- React 19
+- TypeScript
+- Tailwind CSS
+- GSAP (动画库)
+- Markdown 解析
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 目录结构
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `app/` - Next.js App Router 页面
+- `content/posts/` - Markdown 博客文章
+- `components/` - React 组件
+- `public/` - 静态资源

@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "static-build": "cross-env NODE_ENV=production next build"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
@@ -24,6 +25,7 @@
     "@types/qrcode.react": "^1.0.5",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "cross-env": "^7.0.3",
     "eslint": "^9",
     "eslint-config-next": "16.1.2",
     "tailwindcss": "^4",
