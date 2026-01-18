@@ -1,12 +1,5 @@
 import Link from "next/link";
-import ReactMarkdown from "react-markdown";
-import Image from "next/image";
 import Navigation from "../../components/Navigation";
-import * as React from "react";
-
-// Import client components
-import QrFloatingButton from "./QrFloatingButton";
-import TableOfContents from "./TableOfContents";
 
 // Define BlogPost interface
 interface BlogPost {

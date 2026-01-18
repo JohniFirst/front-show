@@ -38,8 +38,8 @@ export default function BlogPostClient({
       <Navigation />
       <div className="min-h-screen">
         <section className="bg-zinc-50 dark:bg-black py-12 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto flex">
-            <div className="flex-1">
+          <div className="max-w-4xl mx-auto flex flex-col lg:flex-row">
+            <div className="w-full lg:flex-1">
               <div className="mb-8">
                 <StaticImage
                   src={post.image || "/images/photo-default.webp"}
@@ -280,7 +280,7 @@ export default function BlogPostClient({
               </div>
             </div>
 
-            <div className="hidden lg:block w-48 flex-shrink-0 ml-4">
+            <div className="hidden lg:block w-48 flex-shrink-0 ml-4 self-start">
               {/* Table of Contents - only show on larger screens */}
               <div className="sticky top-24">
                 <TableOfContents headings={headings} />
