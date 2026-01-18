@@ -1,6 +1,6 @@
 import Link from "next/link";
-import Image from "next/image";
 import Navigation from "../components/Navigation";
+import StaticImage from "../components/StaticImage";
 
 // 定义文章类型
 export interface BlogPost {
@@ -21,6 +21,9 @@ async function getAllBlogPosts(): Promise<BlogPost[]> {
     const fs = await import("fs");
     const path = await import("path");
     const matter = await import("gray-matter");
+    const siteConfig = await import("@/config/siteConfig").then(
+      (m) => m.default
+    );
 
     const postsDirectory = path.join(process.cwd(), "content", "posts");
 
@@ -36,6 +39,16 @@ async function getAllBlogPosts(): Promise<BlogPost[]> {
 
       const { data, content } = matter.default(fileContents);
 
+      // 处理图片路径，根据环境调整
+      let imagePath =
+        data.image || "/images/photo-1551434678-e076c223a692.avif";
+      if (process.env.NODE_ENV === "production") {
+        // 在生产环境中，如果图片路径以 / 开头，则添加 basePath
+        if (imagePath.startsWith("/")) {
+          imagePath = siteConfig.getFullAssetPath(imagePath);
+        }
+      }
+
       return {
         id: fileName.replace(/\.md$/, ""),
         title: data.title || "",
@@ -44,7 +57,7 @@ async function getAllBlogPosts(): Promise<BlogPost[]> {
         content,
         author: data.author || "",
         category: data.category || "",
-        image: data.image || "/images/photo-1551434678-e076c223a692.avif",
+        image: imagePath,
         tags: data.tags || [],
       };
     });
@@ -105,13 +118,10 @@ export default async function BlogPage() {
                 >
                   <article>
                     <div className="h-48 overflow-hidden">
-                      <Image
+                      <StaticImage
                         src={post.image}
                         alt={post.title}
-                        width={800}
-                        height={600}
                         className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                        unoptimized
                       />
                     </div>
                     <div className="p-6">
@@ -133,13 +143,10 @@ export default async function BlogPage() {
                       <div className="flex items-center justify-between">
                         <div className="flex items-center">
                           <div className="flex-shrink-0">
-                            <Image
+                            <StaticImage
                               src="/images/photo-1555066931-4365d14bab8c.avif"
                               alt={post.author}
-                              width={40}
-                              height={40}
                               className="rounded-xl w-10 h-10 object-cover"
-                              unoptimized
                             />
                           </div>
                           <div className="ml-3">

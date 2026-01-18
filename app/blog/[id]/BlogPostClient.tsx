@@ -3,10 +3,10 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
-import Image from "next/image";
 import Navigation from "../../components/Navigation";
 import QrFloatingButton from "./QrFloatingButton";
 import TableOfContents from "./TableOfContents";
+import StaticImage from "../../components/StaticImage";
 
 // Define BlogPost interface
 interface BlogPost {
@@ -41,14 +41,10 @@ export default function BlogPostClient({
           <div className="max-w-4xl mx-auto flex">
             <div className="flex-1">
               <div className="mb-8">
-                <Image
+                <StaticImage
                   src={post.image || "/images/photo-default.webp"}
                   alt={post.title}
-                  width={1200}
-                  height={400}
                   className="w-full h-64 object-cover rounded-xl"
-                  priority
-                  unoptimized
                 />
               </div>
               <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-8 -mt-12 relative z-10">
@@ -238,14 +234,11 @@ export default function BlogPostClient({
                       img: ({ src, alt, title }) => {
                         const imageUrl = typeof src === "string" ? src : "";
                         return (
-                          <Image
+                          <StaticImage
                             src={imageUrl}
                             alt={alt || ""}
                             title={title}
-                            width={800}
-                            height={600}
                             className="rounded-lg shadow-md max-w-full h-auto my-4"
-                            unoptimized
                           />
                         );
                       },

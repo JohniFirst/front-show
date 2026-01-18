@@ -1,7 +1,7 @@
 import Link from "next/link";
-import Image from "next/image";
 import Navigation from "../components/Navigation";
 import GsapElementAnimation from "../components/GsapElementAnimation";
+import StaticImage from "../components/StaticImage";
 
 export default function PortfolioPage() {
   const projects = [
@@ -99,13 +99,10 @@ export default function PortfolioPage() {
                     className="bg-white dark:bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
                   >
                     <div className="h-48 overflow-hidden">
-                      <Image
+                      <StaticImage
                         src={project.image}
                         alt={project.title}
                         className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                        width={500}
-                        height={300}
-                        priority={false}
                       />
                     </div>
                     <div className="p-6">

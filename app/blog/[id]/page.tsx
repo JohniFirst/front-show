@@ -37,6 +37,19 @@ async function getBlogPost(id: string): Promise<BlogPost | null> {
     const matterModule = await import("gray-matter");
     const { data, content } = (matterModule as any).default(fileContents);
 
+    const siteConfig = await import("@/config/siteConfig").then(
+      (m) => m.default
+    );
+
+    // 处理图片路径，根据环境调整
+    let imagePath = data.image || "/images/photo-default.webp";
+    if (process.env.NODE_ENV === "production") {
+      // 在生产环境中，如果图片路径以 / 开头，则添加 basePath
+      if (imagePath.startsWith("/")) {
+        imagePath = siteConfig.getFullAssetPath(imagePath);
+      }
+    }
+
     return {
       id,
       title: data.title || "",
@@ -45,7 +58,7 @@ async function getBlogPost(id: string): Promise<BlogPost | null> {
       content,
       author: data.author || "",
       category: data.category || "",
-      image: data.image || "",
+      image: imagePath,
       tags: data.tags || [],
     };
   } catch (error) {
