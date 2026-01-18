@@ -1,22 +1,12 @@
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
+import Image from "next/image";
 import Navigation from "../../components/Navigation";
 import GsapElementAnimation from "../../components/GsapElementAnimation";
 
 // 导入客户端组件
 import QrCodeSection from "./QrCodeSection";
-
-// 定义文章类型
-interface BlogPost {
-  id: string;
-  title: string;
-  date: string;
-  excerpt: string;
-  content: string;
-  author: string;
-  category: string;
-  tags: string[];
-}
+import { BlogPost } from "../page";
 
 // 从文件系统读取博客文章
 async function getBlogPost(id: string): Promise<BlogPost | null> {
@@ -43,6 +33,7 @@ async function getBlogPost(id: string): Promise<BlogPost | null> {
       author: data.author || "",
       category: data.category || "",
       tags: data.tags || [],
+      image: data.image || "",
     };
   } catch (error) {
     console.error(`读取文章 ${id} 失败:`, error);
@@ -109,10 +100,14 @@ export default async function BlogPostPage({
           <div className="max-w-4xl mx-auto">
             <GsapElementAnimation animationType="fadeIn" delay={0.2}>
               <div className="mb-8">
-                <img
-                  src={`https://picsum.photos/seed/${id}/1200/400`}
+                <Image
+                  src={post.image || "/images/photo-default.webp"}
                   alt={post.title}
+                  width={1200}
+                  height={400}
                   className="w-full h-64 object-cover rounded-xl"
+                  priority
+                  unoptimized
                 />
               </div>
               <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-8 -mt-12 relative z-10">
@@ -144,14 +139,20 @@ export default async function BlogPostPage({
                 <div className="prose prose-gray dark:prose-invert max-w-none">
                   <ReactMarkdown
                     components={{
-                      img: ({ src, alt, title }) => (
-                        <img
-                          src={src}
-                          alt={alt || ""}
-                          title={title}
-                          className="rounded-lg shadow-md max-w-full h-auto"
-                        />
-                      ),
+                      img: ({ src, alt, title }) => {
+                        const imageUrl = typeof src === "string" ? src : "";
+                        return (
+                          <Image
+                            src={imageUrl}
+                            alt={alt || ""}
+                            title={title}
+                            width={800}
+                            height={600}
+                            className="rounded-lg shadow-md max-w-full h-auto"
+                            unoptimized
+                          />
+                        );
+                      },
                     }}
                   >
                     {post.content}

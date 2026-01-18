@@ -4,7 +4,7 @@ import Navigation from "../components/Navigation";
 import GsapElementAnimation from "../components/GsapElementAnimation";
 
 // 定义文章类型
-interface BlogPost {
+export interface BlogPost {
   id: string;
   title: string;
   date: string;
@@ -104,62 +104,64 @@ export default async function BlogPage() {
             <GsapElementAnimation animationType="slideIn" delay={0.6}>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
                 {posts.map((post) => (
-                  <article
+                  <Link
+                    href={`/blog/${post.id}`}
                     key={post.id}
-                    className="bg-white dark:bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
+                    className="block bg-white dark:bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
                   >
-                    <div className="h-48 overflow-hidden">
-                      <Image
-                        src={post.image}
-                        alt={post.title}
-                        width={800}
-                        height={600}
-                        className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                      />
-                    </div>
-                    <div className="p-6">
-                      <div className="flex justify-between items-center mb-3">
-                        <span className="text-xs font-medium px-2.5 py-0.5 rounded-full bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200">
-                          {post.category}
-                        </span>
-                        <span className="text-sm text-gray-500 dark:text-gray-400">
-                          {post.date}
-                        </span>
+                    <article>
+                      <div className="h-48 overflow-hidden">
+                        <Image
+                          src={post.image}
+                          alt={post.title}
+                          width={800}
+                          height={600}
+                          className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                          unoptimized
+                        />
                       </div>
-                      <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
-                        {post.title}
-                      </h3>
-                      <p className="text-gray-600 dark:text-gray-300 mb-4">
-                        {post.excerpt}
-                      </p>
-
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center">
-                          <div className="flex-shrink-0">
-                            <Image
-                              src="/images/photo-1555066931-4365d14bab8c.avif"
-                              alt={post.author}
-                              width={40}
-                              height={40}
-                              className="rounded-xl w-10 h-10 object-cover"
-                            />
-                          </div>
-                          <div className="ml-3">
-                            <p className="text-sm font-medium text-gray-900 dark:text-white">
-                              {post.author}
-                            </p>
-                          </div>
+                      <div className="p-6">
+                        <div className="flex justify-between items-center mb-3">
+                          <span className="text-xs font-medium px-2.5 py-0.5 rounded-full bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200">
+                            {post.category}
+                          </span>
+                          <span className="text-sm text-gray-500 dark:text-gray-400">
+                            {post.date}
+                          </span>
                         </div>
+                        <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+                          {post.title}
+                        </h3>
+                        <p className="text-gray-600 dark:text-gray-300 mb-4">
+                          {post.excerpt}
+                        </p>
 
-                        <Link
-                          href={`/blog/${post.id}`}
-                          className="text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300"
-                        >
-                          阅读全文
-                        </Link>
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center">
+                            <div className="flex-shrink-0">
+                              <Image
+                                src="/images/photo-1555066931-4365d14bab8c.avif"
+                                alt={post.author}
+                                width={40}
+                                height={40}
+                                className="rounded-xl w-10 h-10 object-cover"
+                                unoptimized
+                              />
+                            </div>
+                            <div className="ml-3">
+                              <p className="text-sm font-medium text-gray-900 dark:text-white">
+                                {post.author}
+                              </p>
+                            </div>
+                          </div>
+
+                          <span className="text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 font-medium">
+                            阅读全文 →
+                          </span>
+                        </div>
                       </div>
-                    </div>
-                  </article>
+                    </article>
+                  </Link>
                 ))}
               </div>
             </GsapElementAnimation>

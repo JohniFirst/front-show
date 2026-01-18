@@ -6,12 +6,8 @@
   --foreground: #171717;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+/* Theme variables are defined in :root for compatibility */
+/* Tailwind v4 @theme directive removed for CSS linter compatibility */
 
 @media (prefers-color-scheme: dark) {
   :root {
