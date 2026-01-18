@@ -4,7 +4,7 @@ import Image from "next/image";
 import Navigation from "../../components/Navigation";
 
 // 导入客户端组件
-import QrCodeSection from "./QrCodeSection";
+import QrFloatingButton from "./QrFloatingButton";
 import { BlogPost } from "../page";
 
 // 从文件系统读取博客文章
@@ -156,10 +156,10 @@ export default async function BlogPostPage({
               </div>
             </div>
 
-            {/* 二维码区域 */}
-            <QrCodeSection articleId={id} />
+            {/* 二维码浮窗 */}
+            <QrFloatingButton articleId={id} />
 
-            <div className="text-center">
+            <div className="text-center mt-8">
               <Link
                 href="/blog"
                 className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700"
