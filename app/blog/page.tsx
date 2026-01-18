@@ -12,6 +12,7 @@ interface BlogPost {
   content: string;
   author: string;
   category: string;
+  image: string;
   tags: string[];
 }
 
@@ -44,6 +45,7 @@ async function getAllBlogPosts(): Promise<BlogPost[]> {
         content,
         author: data.author || "",
         category: data.category || "",
+        image: data.image || "/images/photo-1551434678-e076c223a692.avif",
         tags: data.tags || [],
       };
     });
@@ -108,7 +110,7 @@ export default async function BlogPage() {
                   >
                     <div className="h-48 overflow-hidden">
                       <Image
-                        src={`https://picsum.photos/seed/${post.id}/800/600`}
+                        src={post.image}
                         alt={post.title}
                         width={800}
                         height={600}
@@ -135,9 +137,7 @@ export default async function BlogPage() {
                         <div className="flex items-center">
                           <div className="flex-shrink-0">
                             <Image
-                              src={`https://ui-avatars.com/api/?name=${encodeURIComponent(
-                                post.author
-                              )}&background=0D8ABC&color=fff&size=40`}
+                              src="/images/photo-1555066931-4365d14bab8c.avif"
                               alt={post.author}
                               width={40}
                               height={40}

@@ -5,6 +5,7 @@ excerpt: "学习React的基础知识，从组件到状态管理的完整指南�
 author: "张三"
 category: "前端开发"
 tags: ["React", "JavaScript", "前端"]
+image: "/images/react.webp"
 ---
 
 # React 入门指南

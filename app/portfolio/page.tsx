@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import Navigation from "../components/Navigation";
 import GsapElementAnimation from "../components/GsapElementAnimation";
 
@@ -9,8 +10,7 @@ export default function PortfolioPage() {
       title: "电子商务平台",
       description: "功能齐全的在线购物平台，具备支付处理和库存管理功能。",
       category: "网络应用",
-      image:
-        "https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      image: "/images/photo-1551434678-e076c223a692.avif",
       tags: ["React", "Node.js", "MongoDB"],
     },
     {
@@ -18,8 +18,7 @@ export default function PortfolioPage() {
       title: "移动银行应用",
       description: "具有生物识别认证和实时交易的安全银行应用。",
       category: "移动应用",
-      image:
-        "https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      image: "/images/photo-1555066931-4365d14bab8c.avif",
       tags: ["React Native", "Firebase", "生物识别"],
     },
     {
@@ -27,8 +26,7 @@ export default function PortfolioPage() {
       title: "企业仪表板",
       description: "用于企业分析和报告的数据可视化仪表板。",
       category: "仪表板",
-      image:
-        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      image: "/images/photo-1460925895917-afdab827c52f.avif",
       tags: ["Vue.js", "D3.js", "Express"],
     },
     {
@@ -36,8 +34,7 @@ export default function PortfolioPage() {
       title: "旅游预订系统",
       description: "具备实时可用性和定价的综合旅游预订平台。",
       category: "网络应用",
-      image:
-        "https://images.unsplash.com/photo-1503220317375-aaad61436b1b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      image: "/images/photo-1503220317375-aaad61436b1b.avif",
       tags: ["Angular", "NestJS", "PostgreSQL"],
     },
     {
@@ -45,8 +42,7 @@ export default function PortfolioPage() {
       title: "医疗保健门户",
       description: "用于病历、预约和远程医疗服务的患者门户。",
       category: "网络应用",
-      image:
-        "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      image: "/images/photo-1516321318423-f06f85e504b3.avif",
       tags: ["React", "GraphQL", "AWS"],
     },
     {
@@ -54,8 +50,7 @@ export default function PortfolioPage() {
       title: "健身追踪器",
       description: "用于锻炼追踪、营养监测和健康洞察的移动应用。",
       category: "移动应用",
-      image:
-        "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      image: "/images/photo-1571019613454-1cb2f99b2d8b.avif",
       tags: ["Flutter", "Redux", "HealthKit"],
     },
   ];
@@ -104,10 +99,13 @@ export default function PortfolioPage() {
                     className="bg-white dark:bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
                   >
                     <div className="h-48 overflow-hidden">
-                      <img
+                      <Image
                         src={project.image}
                         alt={project.title}
                         className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                        width={500}
+                        height={300}
+                        priority={false}
                       />
                     </div>
                     <div className="p-6">

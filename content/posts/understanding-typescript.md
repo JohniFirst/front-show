@@ -5,6 +5,7 @@ excerpt: "TypeScript为JavaScript带来了类型安全，让我们深入了解�
 author: "李四"
 category: "编程语言"
 tags: ["TypeScript", "JavaScript", "编程"]
+image: "/images/ts.webp"
 ---
 
 # 深入理解 TypeScript
