@@ -13,7 +13,7 @@ export default function QrFloatingButton({ articleId }: QrFloatingButtonProps) {
 
   useEffect(() => {
     // 在客户端设置URL以确保window对象可用
-    setUrl(`${window.location.origin}/blog/${articleId}`);
+    setUrl(window.location.href);
   }, [articleId]);
 
   const toggleQR = () => {
