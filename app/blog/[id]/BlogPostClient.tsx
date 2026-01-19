@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
+import rehypeHighlight from "rehype-highlight";
 import Navigation from "../../components/Navigation";
 import QrFloatingButton from "./QrFloatingButton";
 import TableOfContents from "./TableOfContents";
@@ -75,6 +76,7 @@ export default function BlogPostClient({
 
                 <div className="prose prose-gray dark:prose-invert max-w-none">
                   <ReactMarkdown
+                    rehypePlugins={[rehypeHighlight]}
                     components={{
                       // Table components for GFM support
                       table: (props) => (
@@ -194,8 +196,7 @@ export default function BlogPostClient({
                       ),
 
                       // Code blocks
-                      code({ node, ...props }) {
-                        const { children, className } = props;
+                      code({ children, className, ...props }) {
                         const classes = className || "";
                         const hasLang = /language-(\w+)/.exec(classes);
                         const lang = hasLang?.[1];
@@ -206,7 +207,9 @@ export default function BlogPostClient({
                             <code
                               className="bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 px-2 py-1 rounded text-sm font-mono"
                               {...props}
-                            />
+                            >
+                              {children}
+                            </code>
                           );
                         }
                         return (
@@ -214,7 +217,9 @@ export default function BlogPostClient({
                             <code
                               className="block text-sm text-gray-100 font-mono"
                               {...props}
-                            />
+                            >
+                              {children}
+                            </code>
                           </pre>
                         );
                       },
