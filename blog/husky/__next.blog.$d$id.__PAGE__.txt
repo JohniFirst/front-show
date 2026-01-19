@@ -1,0 +1,399 @@
+1:"$Sreact.fragment"
+2:I[52384,["/front-show/_next/static/chunks/303263c27565b0ea.js","/front-show/_next/static/chunks/cbdbed7b59eee25a.js"],"default"]
+7:I[3557,["/front-show/_next/static/chunks/0753f09c302e9460.js","/front-show/_next/static/chunks/f2e3cd9afc1f1cab.js"],"OutletBoundary"]
+8:"$Sreact.suspense"
+3:T361d,
+**<p align=center>写在前面</p>**
+跨行前端开发经过几年的不断跳槽，在看过很多家公司的代码以后，深深的感觉到，同事写的代码的逻辑阅读起来是否容易理解都是其次，同事写了一大堆乱七八糟的代码，不控制缩进，单双引号混用这样的问题才是真的让人抓狂。而且，因为同事可能使用不同的编辑器，vscode、webstorm，要求统一插件也不是太现实，那么，标准的代码构建流程就显得极为重要，你不能要求同事每次编辑完都运行一下代码格式化命令，那你就强制它在代码提交的时候进行格式化检查，检查过不了就不让它推git，相当于一天白干，那他就没有拒绝的理由。
+
+## 一、涉及的相关插件
+| 插件名称 | 功能 |
+| --- | --- |
+| [husky](https://typicode.github.io/husky/zh/) | 在git提交或推送时，自动化 **检查提交信息**、**检查代码** 和 **运行测试**。 |
+| [lint-staged](https://github.com/lint-staged/lint-staged#readme)| 对暂存区代码进行相关操作【语法校验、格式化】|
+|[@commitlint/cli](https://commitlint.js.org/guides/getting-started.html)、@commitlint/config-conventional|对commit提交的信息进行校验，是为了标准化git提交信息，@commitlint/config-conventional是一个推荐标准|
+
+
+## 二、使用步骤
+### 1、使用vite创建你的项目
+```bash
+pnpm create vite # 然后按照终端提示进行选择，项目名称，技术栈
+```
+### 2、初始化git仓库，如果你的脚手架没有帮你做这一步的话
+```bash
+git init
+```
+
+### 3、安装husky(这里仅讨论最新版本v 9+)
+```bash
+pnpm add husky -D # -D的意思是，安装开发依赖，这里面的依赖是仅仅在开发阶段需要的，在package.json的devDependencies对象里面
+
+npx husky init  # 使用npx命令初始化husky
+pnpm exec husky init # 如果你使用的pnpm的话，可以用这个命令，但其实即使用了pnpm你也可以直接用npx命令
+```
+初始化成功husky的话，项目根目录会出现一个.husky文件夹，这时候就说明你初始化成功了，在script命令里面还会新增一个prepare命令
+
+### 4、安装lint-staged
+```bash
+pnpm add lint-staged -D
+```
+安装完成后，在package.json文件里面新增一个lint-staged配置项
+```json
+{
+    …… vue项目
+    "lint-staged": {
+        "*.{js,ts,vue,json}": [
+            "eslint --fix",
+            "prettier --write"
+        ],
+    }
+}
+
+{
+    …… react项目
+    "lint-staged": {
+        "*.{js,ts,jsx,tsx,json}": [
+            "eslint --fix",
+            "prettier --write"
+        ],
+    }
+}
+```
+然后在上一步中创建好的.husky/pre-commit文件里面，写入以下内容，注意第一行的注释也要粘进去，实际上起作用的是npx lint-staged这一句，其余的是为了美化控制台输出
+```bash
+#!/usr/bin/env sh
+
+# 这里的代码相当于定义变量
+RED='\033[31m'
+GREEN='\033[32m'
+BOLD='\033[1m'
+RESET='\033[0m\n'
+
+printf "\n"
+printf "${RED}【开始对暂存区代码进行格式化校验】${RESET}"
+npx lint-staged
+printf "${BOLD}【暂存区代码校验成功】${RESET}"
+printf "\n"
+```
+到这一步，设置完成，运行git commit的时候就会有代码校验了
+
+### 5、安装@commitlint/cli、@commitlint/config-conventional
+```bash
+pnpm add @commitlint/cli @commitlint/config-conventional -D
+```
+安装完成之后，就会对commit的信息进行校验。比如说新特性，feat，bug修复，fix，这之后的代码提交需要这么写
+```bash
+git commit -m "feat: xxx新特性"
+```
+至此，配置完成。装了@commitlint/config-conventional的话，commmitlint默认就回去读取它里面的配置信息，如果你想进行自定义的话，可以新建一个.commitlintrc文件，在里面写入以下内容
+```json
+{
+  "extends": [
+    "@commitlint/config-conventional"
+  ],
+  "rules": {
+    "type-enum": [
+      2,
+      "always",
+      [
+        "init",
+        "build",
+        "ci",
+        "chore",
+        "docs",
+        "feat",
+        "fix",
+        "perf",
+        "refactor",
+        "revert",
+        "style",
+        "test",
+        "type"
+      ]
+    ]
+  },
+  "prompt": {
+    "types": [
+      {
+        "value": "feat",
+        "name": "feat:     🚀  A new feature",
+        "emoji": "🚀"
+      },
+      {
+        "value": "fix",
+        "name": "fix:      🧩  A bug fix",
+        "emoji": "🧩"
+      },
+      {
+        "value": "docs",
+        "name": "docs:     📚  Documentation only changes",
+        "emoji": "📚"
+      },
+      {
+        "value": "style",
+        "name": "style:    🎨  Changes that do not affect the meaning of the code",
+        "emoji": "🎨"
+      },
+      {
+        "value": "refactor",
+        "name": "refactor: ♻️   A code change that neither fixes a bug nor adds a feature",
+        "emoji": "♻️"
+      },
+      {
+        "value": "perf",
+        "name": "perf:     ⚡️  A code change that improves performance",
+        "emoji": "⚡️"
+      },
+      {
+        "value": "test",
+        "name": "test:     ✅  Adding missing tests or correcting existing tests",
+        "emoji": "✅"
+      },
+      {
+        "value": "build",
+        "name": "build:    📦️   Changes that affect the build system or external dependencies",
+        "emoji": "📦️"
+      },
+      {
+        "value": "ci",
+        "name": "ci:       🎡  Changes to our CI configuration files and scripts",
+        "emoji": "🎡"
+      },
+      {
+        "value": "chore",
+        "name": "chore:    🔨  Other changes that don't modify src or test files",
+        "emoji": "🔨"
+      },
+      {
+        "value": "type",
+        "name": "type:    🔨  Improve the type declaration file",
+        "emoji": "🔨"
+      },
+      {
+        "value": "revert",
+        "name": "revert:   ⏪️  Reverts a previous commit",
+        "emoji": "⏪️"
+      },
+      {
+        "value": "wip",
+        "name": "wip:      🕔  work in process",
+        "emoji": "🕔"
+      },
+      {
+        "value": "workflow",
+        "name": "workflow: 📋  workflow improvements",
+        "emoji": "📋"
+      },
+      {
+        "value": "type",
+        "name": "type:     🔰  type definition file changes",
+        "emoji": "🔰"
+      }
+    ],
+    "useEmoji": true,
+    "customScopesAlign": "bottom",
+    "emptyScopesAlias": "empty",
+    "customScopesAlias": "custom",
+    "allowBreakingChanges": [
+      "feat",
+      "fix"
+    ]
+  }
+}
+```
+
+## 三、代码格式化周边prettier、eslint、biome
+### 1、prettier
+prettier的初始化相对简单
+```bash
+pnpm add prettier -D
+```
+安装完之后在根目录创建.prettierrc配置文件，并在script命令中添加相关命令即可,--write的意思是不仅进行校验，还进行修正
+```json
+{
+    "script": {
+        "format": "prettier --write"
+    }
+}
+```
+为了解决搭配eslint使用的时候产生的格式校验冲突，需要对eslint的配置文件进行设置，这样就能解决样式格式化带来的冲突，prettier官方的方法是使用eslint-config-prettier，如果是vue项目，使用@vue/eslint-config-prettier，配置方式一样。vue2项目总共需要的prettier依赖有eslint-plugin-prettier、prettier、@vue/eslint-config-prettier。
+```javascript
+{
+  // .eslintrc.js
+  "extends": [
+    "some-other-config-you-use",
+    "prettier"
+  ]
+}
+```
+
+### 2、eslint
+eslint是一个使用的相对广泛的代码语法格式化插件，但是它配置很复杂，而且还有一大堆周边插件，比如针对vue的，针对react hooks的，针对typescript的，配置很复杂，运行也相对比较慢
+```bash
+pnpm add eslint -D
+
+npm init @eslint/config@latest # 初始化eslint，根据控制台提示进行选择就行了
+```
+
+### 3、biome 语法校验+代码格式化工具，现在同时支持了react和vue
+
+> 更新时间 2025年7月9日
+
+> 虽然速度比较快，但是在配置和使用方便成都上边，跟传统的eslint + prettier相比还是有很大差距，而开发最重要的是稳定，满足需求，其次再是快，在当前时间节点下，已经将项目的格式化工具换回了eslint + prettier
+
+具体可以去看[官网](https://biomejs.dev/zh-cn/guides/getting-started/)
+特点是校验更快，配置相对更清晰，官网里面有详细介绍，这里贴一点简单的操作步骤
+```bash
+pnpm add --save-dev --save-exact @biomejs/biome
+
+pnpm biome init
+
+pnpm biome check --write # 同时运行lint和format
+```
+
+运行了init命令之后，会获得一个biome.json文件
+```json
+{
+  "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+  "organizeImports": {
+    "enabled": false
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true
+    }
+  }
+}
+```
+
+## 四、git常用教程
+
+- 初始化git仓库: git init
+- 将更改添加到暂存区：git add .
+- 提交你的更改：git commit -m "提交信息"
+- 将代码更改同步到远程仓库：git push
+- 修改上一次未同步到远程的commit信息：git commit --amend -m "提交信息"
+- 利用一次/多次新的提交撤回某次提交，无需提交是线性的，可以撤回任意时间的commit：git revert HEAD
+- 直接丢弃掉commit，这个命令要求必须是线性的：git reset HEAD
+- 符合正常提交顺序的push直接常规push就可以了，但是如果是reset过的commit，推送使用：git push --force
+- 查看git提交记录：git log
+- 查看当前所有分支：git branch
+- 以当前分支创建新的分支：git branch 分支名
+- 切换到别的分支：git switch 分支名 / git checkout 分支名
+- 将某个分支合并到当前分支：git merge 分支名
+- 克隆远程仓库到本地：git clone 仓库地址
+- 将新建的分支同步到远程仓库：第一次使用git push -u origin 远程分支名
+- 删除本地分支：git checkout -d 分支名   `如果分支未同步到远程会获得提示，此时可以使用强制删除`
+- 强制删除本地分支： git checkout -D 分支名
+- 将本地删除的分支同步到远程：git push origin --delete 已经删除的分支名
+- 暂存更改：git stash 当前代码为coding完毕，但是需要切换到别的分支时可以使用这个命令
+- 创建ssh密钥，其实本质上只需要一条命令：
+    
+```bash
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+    
+cat ~/.ssh/id_rsa.pub # 复制这条命令输出的内容，将它粘贴到你的git仓库的ssh设置页面，保存就行了
+```
+
+### 推荐的git工作流程
+最开始的时候我都是 git add . -> git commit -m "" -> git pull -> git push
+`但是这样如果别的同事提交了代码的话，会默认多出一条merge记录`
+所以，就将工作流程修改成 git add . -> git pull -> git commit -m "" -> git push
+
+### 凭据保存技巧
+如果你的项目没有办法使用sshkey，只能用https的方式与仓库进行交互的话，避免每次交互都要输入账号密码，你可以有以下技巧，这样的话就不用每次都输入账号密码：
+
+1. git clone http://账号:密码@你本来的仓库地址
+2. 对于已经下拉到本地的项目，打开隐藏文件夹.git/config 将【remote "origin"】下面的url按照上边的格式加上账号密码就可以完美运行了
+
+## 五、你不知道的manifest配置文件
+manifest是什么？
+manifest是可以将你的单页应用设置为类桌面端应用的配置文件，可以通过桌面图标快捷访问，甚至是开机自动启动
+
+配置步骤
+1、创建manifest.json配置文件，其中，必须设置192和512大小的图标，适配桌面，移动端图标显示
+```json
+{
+    "name": "RQ Admin",
+    "short_name": "PWA",
+    "start_url": "/?source=pwa",
+    "scope": "/",
+    "display": "standalone",
+    "description": "A Progressive Web App for RQ Admin",
+    "lang": "zh-CN",
+    "background_color": "#ffffff",
+    "theme_color": "#4f46e5",
+    "orientation": "portrait",
+    "icons": [
+        {
+            "src": "/icons/app_icon-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "/icons/app_icon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ]
+}
+```
+2、将manifest配置文件引入你的项目
+```html
+  <link rel="manifest" href="manifest.json">
+```
+3、**必须**，注册一个service worker，可以是空文件
+
+```js
+// service-worker.js
+self.addEventListener('install', function (event) {
+    event.waitUntil(
+        caches.open('my-cache-v1')
+            .then(function (cache) {
+                return cache.addAll([
+                    '/',
+                    '/manifest.json',
+                    '/icons/app_icon-192x192.png',
+                    '/icons/app_icon-512x512.png',
+                ]);
+            })
+    );
+});
+
+self.addEventListener('fetch', function (event) {
+    event.respondWith(
+        caches.match(event.request)
+            .then(function (response) {
+                if (response) {
+                    return response;
+                }
+                return fetch(event.request);
+            })
+    );
+});
+```
+注册serviceWorker
+```js
+<script>
+    if (navigator.serviceWorker) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('/service-worker.js')
+          .then(function (registration) {
+            console.log('ServiceWorker registration successful with scope: ', registration.scope);
+          })
+          .catch(function (err) {
+            console.log('ServiceWorker registration failed: ', err);
+          });
+      });
+    }
+  </script>
+```
+
+经过这些配置，你的应用在**localhost访问**、或者**https服务器部署**的时候，用户就能在浏览器看到安装成pwa的提示0:{"buildId":"Y8ZD5lxMzT8QS4jG7rTQ4","rsc":["$","$1","c",{"children":[["$","$L2",null,{"initialPost":{"id":"husky","title":"前端工程化实践（husky及周边插件规范开发流程）","date":"2024-01-05","excerpt":"前端工程化相关推荐设置","content":"$3","author":"钱玉才","category":"前端开发","image":"/images/css.webp","tags":["工程化","前端"]},"initialHeadings":[{"level":2,"text":"一、涉及的相关插件","id":"-"},{"level":2,"text":"二、使用步骤","id":"-"},{"level":3,"text":"1、使用vite创建你的项目","id":"1-vite-"},{"level":3,"text":"2、初始化git仓库，如果你的脚手架没有帮你做这一步的话","id":"2-git-"},{"level":3,"text":"3、安装husky(这里仅讨论最新版本v 9+)","id":"3-husky-v-9-"},{"level":3,"text":"4、安装lint-staged","id":"4-lint-staged"},{"level":1,"text":"这里的代码相当于定义变量","id":"-"},{"level":3,"text":"5、安装@commitlint/cli、@commitlint/config-conventional","id":"5-commitlint-cli-commitlint-config-conventional"},{"level":2,"text":"三、代码格式化周边prettier、eslint、biome","id":"-prettier-eslint-biome"},{"level":3,"text":"1、prettier","id":"1-prettier"},{"level":3,"text":"2、eslint","id":"2-eslint"},{"level":3,"text":"3、biome 语法校验+代码格式化工具，现在同时支持了react和vue","id":"3-biome-react-vue"},{"level":2,"text":"四、git常用教程","id":"-git-"},{"level":3,"text":"推荐的git工作流程","id":"-git-"},{"level":3,"text":"凭据保存技巧","id":"-"},{"level":2,"text":"五、你不知道的manifest配置文件","id":"-manifest-"}]}],["$L4","$L5"],"$L6"]}],"loading":null,"isPartial":false}
+4:["$","script","script-0",{"src":"/front-show/_next/static/chunks/303263c27565b0ea.js","async":true}]
+5:["$","script","script-1",{"src":"/front-show/_next/static/chunks/cbdbed7b59eee25a.js","async":true}]
+6:["$","$L7",null,{"children":["$","$8",null,{"name":"Next.MetadataOutlet","children":"$@9"}]}]
+9:null

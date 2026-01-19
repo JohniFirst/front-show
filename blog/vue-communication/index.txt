@@ -1,0 +1,548 @@
+1:"$Sreact.fragment"
+2:I[38503,["/front-show/_next/static/chunks/0753f09c302e9460.js","/front-show/_next/static/chunks/f2e3cd9afc1f1cab.js"],"default"]
+3:I[39788,["/front-show/_next/static/chunks/0753f09c302e9460.js","/front-show/_next/static/chunks/f2e3cd9afc1f1cab.js"],"default"]
+5:I[3557,["/front-show/_next/static/chunks/0753f09c302e9460.js","/front-show/_next/static/chunks/f2e3cd9afc1f1cab.js"],"OutletBoundary"]
+6:"$Sreact.suspense"
+8:I[3557,["/front-show/_next/static/chunks/0753f09c302e9460.js","/front-show/_next/static/chunks/f2e3cd9afc1f1cab.js"],"ViewportBoundary"]
+a:I[3557,["/front-show/_next/static/chunks/0753f09c302e9460.js","/front-show/_next/static/chunks/f2e3cd9afc1f1cab.js"],"MetadataBoundary"]
+c:I[13136,[],"default"]
+:HL["/front-show/_next/static/chunks/856c27fe3ff157c0.css","style"]
+0:{"P":null,"b":"Y8ZD5lxMzT8QS4jG7rTQ4","c":["","blog","vue-communication",""],"q":"","i":false,"f":[[["",{"children":["blog",{"children":[["id","vue-communication","d"],{"children":["__PAGE__",{}]}]}]},"$undefined","$undefined",true],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/front-show/_next/static/chunks/856c27fe3ff157c0.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"zh-CN","children":["$","body",null,{"className":"min-h-screen antialiased bg-white dark:bg-black text-gray-900 dark:text-white","children":["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}]}]]}],{"children":[["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["$","$1","c",{"children":["$L4",[["$","script","script-0",{"src":"/front-show/_next/static/chunks/303263c27565b0ea.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/front-show/_next/static/chunks/cbdbed7b59eee25a.js","async":true,"nonce":"$undefined"}]],["$","$L5",null,{"children":["$","$6",null,{"name":"Next.MetadataOutlet","children":"$@7"}]}]]}],{},null,false,false]},null,false,false]},null,false,false]},null,false,false],["$","$1","h",{"children":[null,["$","$L8",null,{"children":"$L9"}],["$","div",null,{"hidden":true,"children":["$","$La",null,{"children":["$","$6",null,{"name":"Next.Metadata","children":"$Lb"}]}]}],null]}],false]],"m":"$undefined","G":["$c",[]],"S":true}
+d:I[52384,["/front-show/_next/static/chunks/303263c27565b0ea.js","/front-show/_next/static/chunks/cbdbed7b59eee25a.js"],"default"]
+e:T3f39,
+> 都2025年了，为什么还要写一篇文章专门介绍Vue的组件通信呢？正如我其它文章里面提到的，前端工程化的前提就是合理的组件规划，组件的编写一定要遵守高内聚、低耦合，还有很重要的开闭原则，组件划分的时候**一定要考虑后期的功能扩展、功能变动**。如果你划分的组件，在功能需求发生改变或者后期功能扩展的时候让人根本无从下手，那你就要反思一下你自己的专业性。这篇文章除了介绍Vue官方提供的一些常规组件通信方式之外，还会介绍一个很抽象的概念，**传递组件**。
+
+## 一、官方提供的组件通信方式
+
+### 1、props传值
+
+最常用的一种方式，这种方式你可以传递任何数据类型，string, number, boolean, array, object, function <br>
+比较取巧的一种方式是，你可以传递一个函数，使得子组件可以改父组件的变量，同时向父组件传递数据
+
+```html
+// parent
+<template>
+  <ChildCom :delivery-data="receiveDataFromChild"/>
+</template>
+
+<script setup lang="ts">
+import ChildCom from './ChildCom.vue'
+
+const receiveDataFromChild = (data: object) => {
+  console.log('接收到了子组件的data', data);
+  
+}
+</script>
+
+// child
+<template>
+  <h2>child</h2>
+</template>
+
+<script setup lang="ts">
+const props = defineProps<{
+  deliveryData: (data: object) => void
+}>()
+
+props.deliveryData({ hello: 'this is message from child component' })
+</script>
+```
+
+### 2、emit通信
+
+官方提供的向父组件传递数据的方式
+
+```html
+<template>
+  <ChildCom @get-data="receiveDataFromChild"/>
+</template>
+
+<script setup lang="ts">
+import ChildCom from './ChildCom.vue'
+
+const receiveDataFromChild = (data: object) => {
+  console.log('接收到了子组件的data', data);
+}
+</script>
+
+<template>
+  <h2>child</h2>
+</template>
+
+<script setup lang="ts">
+const emit = defineEmits<{
+  getData: [{ name: string }]
+}>()
+
+emit('getData', { name: 'child' })
+</script>
+```
+
+### 3、Vue2的\$bus
+
+全局事件总线，需要监听和发起
+
+### 4、Vue3的provide/inject
+
+可以在有父子关系的组件中跨组件通信，如果你想传递一个不能被子组件修改的值的话，有很多方式，比如传递计算属性、仅仅传递一个getter函数
+
+```js
+// main.js
+import { provide } from 'vue'
+
+provide('appName', 'My App')
+
+const obj = {
+  name: 'zhangsan'
+}
+
+const getObjName = () => {
+  return obj.name
+}
+
+provide('getObjName', getObjName)
+```
+
+```html
+<script setup lang="ts">
+// 项目的任何页面
+import { inject } from 'vue';
+
+const appName = inject('appName');
+
+const objName = inject('getObjName') as () => string
+
+console.log(appName, objName())
+</script>
+```
+
+### 5、pinia
+
+官方推荐的替代vuex的状态管理库，使用更方便，数据也更清晰
+
+### 6、作用域插槽
+
+作用域插槽写到这里，不仅仅是因为默认插槽、具名插槽可以向父组件传递组件信息的同时不丢失响应性，还因为，作用域插槽可以有emit函数的功能，向父组件暴露子组件的变量。
+
+````html
+<template>
+  <ul>
+    <li v-for="item in studentsArr" :key="item.name">
+      <slot name="header" :student="item">
+        {{ item.name }} - {{ item.age }} - {{ item.class }}
+      </slot>
+    </li>
+  </ul>
+</template>
+
+<script setup lang="ts">
+const studentsArr = [
+  {
+    name: 'zhangsan',
+    age: 18,
+    class: 1
+  },
+  {
+    name: 'lisi',
+    age: 19,
+    class: 1
+  },
+]
+</script>
+
+```html
+<template>
+  <ChildCom>
+    <template #header="{ student }">
+      <span>姓名:{{ student.name }},年龄:{{ student.age }},班级:{{ student.class }}</span>
+    </template>
+  </ChildCom>
+</template>
+
+<script setup lang="ts">
+import ChildCom from './ChildCom.vue'
+</script>
+````
+
+## 二、逆向插槽 —— 子组件向父组件传递组件
+
+如果你的组件划分是合理的话，上述方式已经完完全全足够你开发任何项目了，但是，你自己合规，并不能代表接手的别人的代码也合规。遇到过一个场景，之前的开发他也会组件划分，但是划分方式极不合理，后期功能扩展的时候完全无法下手，由此引发了我对组件传值的思考。下文将完整介绍我的思路发展过程。示例代码只简单的描述组件关系。**项目其实使用的是ts，但是为了降低一次性的信息量，案例使用js展示** <br>
+
+```html
+<template>
+    <!-- 布局组件layout-com.vue -->
+    <CardCom title="现在它只支持传入文字">
+        <!-- 会有很多个业务组件，这里只写一个用作示例 -->
+        <BusinessCom/>
+        <BusinessCom1/>
+        <BusinessCom2/>
+        <BusinessCom3/>
+    </CardCom>
+</template>
+
+<script setup name="LayoutCom">
+import CardCom from './card-com.vue'
+import BusinessCom from './bussiness.vue'
+</script>
+```
+
+```html
+<template>
+    <!-- 卡片布局组件card-com.vue -->
+    <div class="card-wp">
+        <div class="card-title-wp">
+            <div class="card-title-left">
+                <h3>{{ title }}</h3>
+            </div>
+            <p class="card-title-right">title-right</p>
+        </div>
+        <div>
+            <p>这里展示内容</p>
+            <!-- 默认插槽显示位置 -->
+            <slot></slot>
+        </div>
+    </div>
+</template>
+
+<script setup name="CardCom">
+defineProps({
+    title: {
+        type: String,
+        default: ''
+    }
+})
+</script>
+```
+
+```html
+<template>
+    <!-- 业务组件business-com.vue -->
+    <button @click="handleClick"> 点这个按钮num++ </button>
+    <p>{{ num }}</p>
+</template>
+
+<script setup name="BusinessCom">
+const num = ref(0)
+
+const handleClick = () => {
+    // 仅做展示用，实际业务场景比这复杂的多
+    num.value += 1
+}
+</script>
+```
+
+上边展示了现有组件之间的关系，新需求是，将业务组件的部分操作移动到卡片的标题右边，也就是card-title-left的div里面。 <br>
+很明显，就像我之前提到的，**如果组件划分、使用的方式合理的话，官方提供的那些通信方式完完全全够用**，比如，像下边这样。
+
+```html
+<template>
+    <!-- 布局组件layout-com.vue -->
+    <CardCom title="现在它只支持传入文字">
+        <BusinessCom/>
+    </CardCom>
+    
+    <CardCom title="现在它只支持传入文字">
+        <BusinessCom/>
+    </CardCom>
+    
+    <CardCom title="现在它只支持传入文字">
+        <BusinessCom/>
+    </CardCom>
+</template>
+
+<script setup name="LayoutCom">
+import CardCom from './card-com.vue'
+import BusinessCom from './bussiness.vue'
+</script>
+```
+
+如果是这种方式的话，很简单，在CardCom里面加一个**具名插槽**就可以了，但是，聪明的前辈程序员不是这么写的，它现在只对这个组件用了一次，而且，基于原有的组件方式，已经实现了很复杂的交互场景，要想改的话，当前业务场景相当于完全重写。 <br>
+所以，如果是你们，你们现在打算怎么做？ <br> <br> <br> <br> <br> <br> <br>
+好的，重点来了，现在介绍一下我的解决方案
+
+*   首先，我们都知道javascript的特点，万物皆对象，任何参数其实都可以通过函数参数的方式传递，而vue是一个js框架，那么，我们是不是可以通过参数的方式传递vue组件？
+*   好的，那么，让我们打印一下vue引入的组件，看看在控制台会输出什么？
+*   它是不是个对象？那么，我们是不是就可以通过参数的方式传递这个组件？试一下，看看代码能不能运行
+
+```html
+<template>
+    <!-- 布局组件layout-com.vue -->
+    <CardCom title="现在它只支持传入文字">
+        <template #title-operate>
+            <!-- 必须加这个判断，不然不符合业务规则 -->
+            <component v-if="deliveryCom" :is="deliveryCom"/>
+        </template>
+        <!-- 会有很多个业务组件，这里只写一个用作示例 -->
+        <BusinessCom @delivery="transferComponent" />
+        <BusinessCom1 />
+        <BusinessCom2 />
+        <BusinessCom3 />
+    </CardCom>
+</template>
+
+<script setup name="LayoutCom">
+import CardCom from './card-com.vue'
+import BusinessCom from './bussiness.vue'
+
+const deliverCom = shallowRef(null)
+
+const transferComponent = (params) => {
+    if(params.componentName === "BussinessCom") {
+        deliverCom.value = params.component
+    }
+}
+</script>
+```
+
+```html
+<template>
+    <!-- 卡片布局组件card-com.vue -->
+    <div class="card-wp">
+        <div class="card-title-wp">
+            <div class="card-title-left">
+                <h3>{{ title }}</h3>
+                
+                <!-- 新加的一行代码 -->
+                <slot name="titleOperate"/>
+            </div>
+            <p class="card-title-right">title-right</p>
+        </div>
+        <div>
+            <p>这里展示内容</p>
+            <!-- 默认插槽显示位置 -->
+            <slot></slot>
+        </div>
+    </div>
+</template>
+
+<script setup name="CardCom">
+defineProps({
+    title: {
+        type: String,
+        default: ''
+    }
+})
+</script>
+```
+
+```html
+<template>
+    <!-- vue3 -->
+    <!-- 业务组件business-com.vue -->
+    <!-- <button @click="handleClick"> 点这个按钮num++ </button> -->
+    <p>{{ num }}</p>
+</template>
+
+<script setup lang="jsx" name="BusinessCom">
+
+defineEmits([''])
+const num = ref(0)
+
+const handleClick = () => {
+    // 仅做展示用，实际业务场景比这复杂的多
+    num.value += 1
+}
+
+const deliveryTest = defineComponent({
+    render() {
+        return <button onClick={handleClick}> 点这个按钮num++ </button>
+    }
+})
+
+onMounted(()=>{
+    emit('delivery', {
+        componentName: 'BussinessCom',
+        component: deliveryTest
+    })
+})
+</script>
+```
+
+```html
+<template>
+	<!-- vue2 -->
+  <!-- 业务组件business-com.vue -->
+  <!-- <button @click="handleClick"> 点这个按钮num++ </button> -->
+  <p>{{ num }}</p>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      num: 0,
+    };
+  },
+  mounted() {
+    this.$emit("delivery", {
+      componentName: "BussinessCom",
+      component: {
+        render: () => {
+          return <button onClick={this.handleClick}> 点这个按钮num++ </button>;
+        },
+      },
+    });
+  },
+  methods: {
+    handleClick() {
+      this.num++;
+    },
+  },
+};
+</script>
+
+```
+
+> 完美运行，响应式未丢失，而且，原有的通信的方式不再局限于js本身的数据格式，而且实现了**逆向插槽**，即组件的子组件向父组件传递。虽然每次增加一个组件都需要新定义一个变量，但是，这是为了修补别人的代码做出的替代方案，毕竟，一个**合格的程序员**不会写出这种离谱的结构。
+
+上面的这种方式还用到的jsx语法，不会的同学可以去了解一下，这种方式使得Vue本身其实也具有巨大的灵活性，Vue模板本身就是前端编程界的一个壮举，再加入jsx，使得Vue具有了react的灵活性。同时，还有它强大的响应式系统和本身就做了的组件优化，这俩都是react相对的弱项。
+
+## 三、到底什么时候vue会失去响应性
+
+### 3.1 对象初始化完成后，对对象的属性进行添加或者删除，都不会有响应式（但是v-model好像又是例外）
+
+<img src="https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/d7261439946346129c8e70d070ab9a66~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAg55So5oi3MDc0OTU1NTIzNzE4:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiMTUyNDM5NTk3NDA3MzMyMyJ9&rk3s=f64ab15b&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1769453961&x-orig-sign=6yEtkwt%2FsfU4g0bEuuhlSP4KCJ8%3D" alt="image.png" width="100%">
+
+```js
+<template>
+  <div>
+    <h2>1、对象初始化完成后，对对象的属性进行添加或者删除，都不会有响应式</h2>
+    {{ JSON.stringify(obj) }}
+    <button @click="changeObj">增加对象的属性</button>
+    <button @click="deleteObj">删除对象初始化的属性</button>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      obj: {
+        name: "zhangsan",
+      },
+    }
+  },
+  methods: {
+    changeObj() {
+      this.obj.age = 18
+    },
+    deleteObj() {
+      delete this.obj.name
+    },
+  },
+}
+</script>
+```
+
+### 3.2 数组初始化完成后，通过索引修改数组，或者直接修改数组的长度，都不会有响应式
+
+<img src="https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/fd01aa90e0644498a6ca7a93930f2b54~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAg55So5oi3MDc0OTU1NTIzNzE4:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiMTUyNDM5NTk3NDA3MzMyMyJ9&rk3s=f64ab15b&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1769453961&x-orig-sign=5POek2pet6Moy0sAoEeHJ6vuYsU%3D" alt="image.png" width="100%">
+
+```js
+<template>
+  <div>
+    <h2>
+      2、数组初始化完成后，通过索引修改数组，或者直接修改数组的长度，都不会有响应式
+    </h2>
+    {{ JSON.stringify(arr) }}
+    <button @click="changeArr">通过索引修改数组</button>
+    <button @click="changeArrLength">直接修改数组的长度</button>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      arr: [{ name: "zhangsan" }, { name: "lisi" }, 3],
+    }
+  },
+  methods: {
+    changeArr() {
+      this.arr[1] = "lisi"
+    },
+    changeArrLength() {
+      this.arr.length = 0
+    },
+  },
+}
+</script>
+```
+
+### 3.3 下面是一些不会失去响应式的情况/能让vue具有响应式的情况
+
+上述是一些确信会失去响应式的情况，开发多了会有点迷惑，到底什么时候会失去响应式
+
+> before：
+
+<img src="https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/4f5faf3fbbb648d4b13e2c44b0a25cf4~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAg55So5oi3MDc0OTU1NTIzNzE4:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiMTUyNDM5NTk3NDA3MzMyMyJ9&rk3s=f64ab15b&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1769453961&x-orig-sign=vKmmvOkUMIkO9q1H2f%2FjJh7tIYc%3D" alt="image.png" width="100%">
+
+> after:
+
+<img src="https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/88368970fdc34b839260bc36bcddfe06~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAg55So5oi3MDc0OTU1NTIzNzE4:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiMTUyNDM5NTk3NDA3MzMyMyJ9&rk3s=f64ab15b&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1769453961&x-orig-sign=ggPvCgkB5g516wKRJx%2FgMUZZa0E%3D" alt="image.png" width="100%">
+
+```js
+<template>
+  <div id="app">
+    <h2>下面是一些不会失去响应式的情况/能让vue具有响应式的情况</h2>
+    <h3>
+      1、初始化对象的时候不声明属性，通过方法统一对对象进行赋值，这种情况下会有响应性
+    </h3>
+    {{ JSON.stringify(emptyObj) }}
+    <button @click="changeEmptyObj">修改空对象</button>
+
+    <h3>2、同理，初始化的时候声明空数组，后期赋值也能实现响应式更新</h3>
+    {{ JSON.stringify(emptyArr) }}
+    <button @click="changeEmptyArr">修改空数组</button>
+
+    <h3>3、甚至，你可能直接为响应式对象绑定一个新的对象，他也能保持响应式</h3>
+    {{ JSON.stringify(objToArr) }}
+    <button @click="changeObjToArr">修改对象</button>
+
+    <h3>4、所以，其实在声明表单的时候你可以不声明属性，直接通过v-model绑定</h3>
+    <form>
+      <label for="name">姓名：</label>
+      <input type="text" id="name" v-model="form.name" />
+      <label for="age">年龄：</label>
+      <input type="text" id="age" v-model="form.age" />
+    </form>
+    {{ JSON.stringify(form) }}
+  </div>
+</template>
+
+<script>
+export default {
+  name: "App",
+  data() {
+    return {
+      emptyObj: {},
+      emptyArr: [],
+      objToArr: { name: "现在初始化的是对象" },
+      form: {},
+    }
+  },
+  created() {
+    this.emptyObj = {
+      name: "zhangsan",
+    }
+    this.emptyArr = [1, 2, 3]
+  },
+  methods: {
+    changeEmptyObj() {
+      this.emptyObj.name = "lisi"
+    },
+    changeEmptyArr() {
+      this.emptyArr.push("lisi")
+    },
+    changeObjToArr() {
+      this.objToArr = [1, 2, 3, 4, 5, "这时候被改成了数组"]
+    },
+  },
+}
+</script>
+```
+4:["$","$Ld",null,{"initialPost":{"id":"vue-communication","title":"Vue2、3组件通信的方式及响应式探讨","date":"2024-01-05","excerpt":"深入探讨vue组件通信的各种方式","content":"$e","author":"钱玉才","category":"前端开发","image":"/images/css.webp","tags":["vue","组件通信","前端"]},"initialHeadings":[{"level":2,"text":"一、官方提供的组件通信方式","id":"-"},{"level":3,"text":"1、props传值","id":"1-props-"},{"level":3,"text":"2、emit通信","id":"2-emit-"},{"level":3,"text":"3、Vue2的\\$bus","id":"3-vue2-bus"},{"level":3,"text":"4、Vue3的provide/inject","id":"4-vue3-provide-inject"},{"level":3,"text":"5、pinia","id":"5-pinia"},{"level":3,"text":"6、作用域插槽","id":"6-"},{"level":2,"text":"二、逆向插槽 —— 子组件向父组件传递组件","id":"-"},{"level":2,"text":"三、到底什么时候vue会失去响应性","id":"-vue-"},{"level":3,"text":"3.1 对象初始化完成后，对对象的属性进行添加或者删除，都不会有响应式（但是v-model好像又是例外）","id":"3-1-v-model-"},{"level":3,"text":"3.2 数组初始化完成后，通过索引修改数组，或者直接修改数组的长度，都不会有响应式","id":"3-2-"},{"level":3,"text":"3.3 下面是一些不会失去响应式的情况/能让vue具有响应式的情况","id":"3-3-vue-"}]}]
+9:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+f:I[92389,["/front-show/_next/static/chunks/0753f09c302e9460.js","/front-show/_next/static/chunks/f2e3cd9afc1f1cab.js"],"IconMark"]
+7:null
+b:[["$","title","0",{"children":"前端开发-响应式网站、小程序、Flutter的安卓ios跨端App"}],["$","meta","1",{"name":"description","content":"专业前端开发服务，提供响应式网站设计、小程序开发、Flutter跨平台移动应用开发。精通React、Vue、Angular等现代前端框架，致力于打造用户体验卓越的数字化产品。"}],["$","meta","2",{"name":"author","content":"Frontend Developer"}],["$","meta","3",{"name":"keywords","content":"前端开发,响应式网站,小程序开发,Flutter,跨端应用,React,Vue,UI/UX设计,JavaScript,TypeScript"}],["$","meta","4",{"name":"creator","content":"Frontend Developer"}],["$","meta","5",{"name":"publisher","content":"Frontend Developer"}],["$","meta","6",{"name":"robots","content":"index, follow"}],["$","meta","7",{"name":"googlebot","content":"index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"}],["$","link","8",{"rel":"canonical","href":"https://JohniFirst.github.io/front-show/"}],["$","meta","9",{"name":"format-detection","content":"telephone=no, address=no, email=no"}],["$","meta","10",{"property":"og:title","content":"前端开发-响应式网站、小程序、Flutter跨端App"}],["$","meta","11",{"property":"og:description","content":"专业前端开发服务，提供响应式网站设计、小程序开发、Flutter跨平台移动应用开发。"}],["$","meta","12",{"property":"og:locale","content":"zh_CN"}],["$","meta","13",{"property":"og:type","content":"website"}],["$","meta","14",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","15",{"name":"twitter:title","content":"前端开发-响应式网站、小程序、Flutter跨端App"}],["$","meta","16",{"name":"twitter:description","content":"专业前端开发服务，提供响应式网站设计、小程序开发、Flutter跨平台移动应用开发。"}],["$","link","17",{"rel":"icon","href":"/favicon.ico"}],["$","$Lf","18",{}]]
