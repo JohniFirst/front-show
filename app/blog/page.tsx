@@ -1,81 +1,33 @@
+"use client";
+
+import type { BlogPost } from "./page.server";
 import Link from "next/link";
 import Navigation from "../components/Navigation";
 import StaticImage from "../components/StaticImage";
 
-// 定义文章类型
-export interface BlogPost {
-  id: string;
-  title: string;
-  date: string;
-  excerpt: string;
-  content: string;
-  author: string;
-  category: string;
-  image: string;
-  tags: string[];
-}
+import { useState, useEffect } from "react";
 
-// 获取所有博客文章
-async function getAllBlogPosts(): Promise<BlogPost[]> {
-  try {
-    const fs = await import("fs");
-    const path = await import("path");
-    const matter = await import("gray-matter");
-    const siteConfig = await import("@/config/siteConfig").then(
-      (m) => m.default
-    );
+function BlogPageClient({ posts }: { posts: BlogPost[] }) {
+  const [showBackToTop, setShowBackToTop] = useState(false);
 
-    const postsDirectory = path.join(process.cwd(), "content", "posts");
+  useEffect(() => {
+    const handleScroll = () => {
+      // Show back to top button when scrolled more than 1 viewport height
+      const scrolled = window.scrollY;
+      const threshold = window.innerHeight;
+      setShowBackToTop(scrolled > threshold);
+    };
 
-    if (!fs.existsSync(postsDirectory)) {
-      return [];
-    }
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
-    const fileNames = fs.readdirSync(postsDirectory);
-
-    const posts = fileNames.map((fileName) => {
-      const fullPath = path.join(postsDirectory, fileName);
-      const fileContents = fs.readFileSync(fullPath, "utf8");
-
-      const { data, content } = matter.default(fileContents);
-
-      // 处理图片路径，根据环境调整
-      let imagePath =
-        data.image || "/images/photo-1551434678-e076c223a692.avif";
-      if (process.env.NODE_ENV === "production") {
-        // 在生产环境中，如果图片路径以 / 开头，则添加 basePath
-        if (imagePath.startsWith("/")) {
-          imagePath = siteConfig.getFullAssetPath(imagePath);
-        }
-      }
-
-      return {
-        id: fileName.replace(/\.md$/, ""),
-        title: data.title || "",
-        date: data.date || "",
-        excerpt: data.excerpt || "",
-        content,
-        author: data.author || "",
-        category: data.category || "",
-        image: imagePath,
-        tags: data.tags || [],
-      };
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
     });
-
-    // 按日期排序（最新的在前）
-    return posts.sort((a, b) => {
-      if (a.date < b.date) return 1;
-      if (a.date > b.date) return -1;
-      return 0;
-    });
-  } catch (error) {
-    console.error("获取文章列表失败:", error);
-    return [];
-  }
-}
-
-export default async function BlogPage() {
-  const posts = await getAllBlogPosts();
+  };
 
   return (
     <>
@@ -177,6 +129,39 @@ export default async function BlogPage() {
           </div>
         </section>
       </div>
+
+      {/* Back to Top Button */}
+      {showBackToTop && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-8 right-8 bg-indigo-600 text-white p-3 rounded-full shadow-lg hover:bg-indigo-700 transition-all duration-300 z-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+          aria-label="回到顶部"
+        >
+          <svg
+            className="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M5 10l7-7m0 0l7 7m-7-7v18"
+            />
+          </svg>
+        </button>
+      )}
     </>
   );
+}
+
+export default async function BlogPage() {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL || ""}/api/blog`,
+    { next: { revalidate: 3600 } }
+  );
+  const posts = await response.json();
+  return <BlogPageClient posts={posts} />;
 }

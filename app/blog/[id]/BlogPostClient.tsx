@@ -33,14 +33,34 @@ export default function BlogPostClient({
 }: BlogPostClientProps) {
   const [post] = useState(initialPost);
   const [headings] = useState(initialHeadings);
+  const [showBackToTop, setShowBackToTop] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Show back to top button when scrolled more than 1 viewport height
+      const scrolled = window.scrollY;
+      const threshold = window.innerHeight;
+      setShowBackToTop(scrolled > threshold);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
 
   return (
     <>
       <Navigation />
       <div className="min-h-screen">
         <section className="bg-zinc-50 dark:bg-black py-12 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto flex flex-col lg:flex-row">
-            <div className="w-full lg:flex-1">
+          <div className="max-w-6xl mx-auto flex flex-col lg:flex-row">
+            <div className="flex-1">
               <div className="mb-8">
                 <StaticImage
                   src={post.image || "/images/photo-default.webp"}
@@ -285,9 +305,9 @@ export default function BlogPostClient({
               </div>
             </div>
 
-            <div className="hidden lg:block w-48 flex-shrink-0 ml-4 self-start">
-              {/* Table of Contents - only show on larger screens */}
-              <div className="sticky top-24">
+            {/* Table of Contents - Always visible on the right side */}
+            <div className="w-full lg:w-64 flex-shrink-0 mt-6 lg:mt-0 lg:ml-6">
+              <div className="lg:sticky lg:top-24">
                 <TableOfContents headings={headings} />
               </div>
             </div>
@@ -306,6 +326,32 @@ export default function BlogPostClient({
           </Link>
         </div>
       </div>
+
+      {/* Back to Top Button -独立功能 */}
+      <button
+        onClick={scrollToTop}
+        className={`fixed bottom-24 right-6 w-14 h-14 bg-indigo-600 text-white rounded-full shadow-lg hover:bg-indigo-700 transition-all duration-300 z-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 flex items-center justify-center ${
+          showBackToTop
+            ? "opacity-100 translate-y-0"
+            : "opacity-0 translate-y-4 pointer-events-none"
+        }`}
+        aria-label="回到顶部"
+      >
+        <svg
+          className="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M5 10l7-7m0 0l7 7m-7-7v18"
+          />
+        </svg>
+      </button>
     </>
   );
 }
