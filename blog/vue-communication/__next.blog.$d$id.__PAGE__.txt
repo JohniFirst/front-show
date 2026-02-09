@@ -1,6 +1,6 @@
 1:"$Sreact.fragment"
-2:I[52384,["/front-show/_next/static/chunks/303263c27565b0ea.js","/front-show/_next/static/chunks/3f3f8fc3fb51b180.js"],"default"]
-7:I[3557,["/front-show/_next/static/chunks/0753f09c302e9460.js","/front-show/_next/static/chunks/f2e3cd9afc1f1cab.js"],"OutletBoundary"]
+2:I[52384,["/front-show/_next/static/chunks/5da133392e458ca5.js","/front-show/_next/static/chunks/f312313765e8fe24.js"],"default"]
+7:I[3557,["/front-show/_next/static/chunks/0753f09c302e9460.js","/front-show/_next/static/chunks/ab669dfe6738b2a8.js"],"OutletBoundary"]
 8:"$Sreact.suspense"
 3:T3f39,
 > 都2025年了，为什么还要写一篇文章专门介绍Vue的组件通信呢？正如我其它文章里面提到的，前端工程化的前提就是合理的组件规划，组件的编写一定要遵守高内聚、低耦合，还有很重要的开闭原则，组件划分的时候**一定要考虑后期的功能扩展、功能变动**。如果你划分的组件，在功能需求发生改变或者后期功能扩展的时候让人根本无从下手，那你就要反思一下你自己的专业性。这篇文章除了介绍Vue官方提供的一些常规组件通信方式之外，还会介绍一个很抽象的概念，**传递组件**。
@@ -534,8 +534,8 @@ export default {
 }
 </script>
 ```
-0:{"buildId":"2ks7APgIR3y1gYgh7jwuD","rsc":["$","$1","c",{"children":[["$","$L2",null,{"initialPost":{"id":"vue-communication","title":"Vue2、3组件通信的方式及响应式探讨","date":"2024-01-05","excerpt":"深入探讨vue组件通信的各种方式","content":"$3","author":"钱玉才","category":"前端开发","image":"/images/css.webp","tags":["vue","组件通信","前端"]},"initialHeadings":[{"level":2,"text":"一、官方提供的组件通信方式","id":"-"},{"level":3,"text":"1、props传值","id":"1-props-"},{"level":3,"text":"2、emit通信","id":"2-emit-"},{"level":3,"text":"3、Vue2的\\$bus","id":"3-vue2-bus"},{"level":3,"text":"4、Vue3的provide/inject","id":"4-vue3-provide-inject"},{"level":3,"text":"5、pinia","id":"5-pinia"},{"level":3,"text":"6、作用域插槽","id":"6-"},{"level":2,"text":"二、逆向插槽 —— 子组件向父组件传递组件","id":"-"},{"level":2,"text":"三、到底什么时候vue会失去响应性","id":"-vue-"},{"level":3,"text":"3.1 对象初始化完成后，对对象的属性进行添加或者删除，都不会有响应式（但是v-model好像又是例外）","id":"3-1-v-model-"},{"level":3,"text":"3.2 数组初始化完成后，通过索引修改数组，或者直接修改数组的长度，都不会有响应式","id":"3-2-"},{"level":3,"text":"3.3 下面是一些不会失去响应式的情况/能让vue具有响应式的情况","id":"3-3-vue-"}]}],["$L4","$L5"],"$L6"]}],"loading":null,"isPartial":false}
-4:["$","script","script-0",{"src":"/front-show/_next/static/chunks/303263c27565b0ea.js","async":true}]
-5:["$","script","script-1",{"src":"/front-show/_next/static/chunks/3f3f8fc3fb51b180.js","async":true}]
+0:{"buildId":"dK0gKTag5k1kVWvmcnNx3","rsc":["$","$1","c",{"children":[["$","$L2",null,{"initialPost":{"id":"vue-communication","title":"Vue2、3组件通信的方式及响应式探讨","date":"2024-01-05","excerpt":"深入探讨vue组件通信的各种方式","content":"$3","author":"钱玉才","category":"前端开发","image":"/images/css.webp","tags":["vue","组件通信","前端"]},"initialHeadings":[{"level":2,"text":"一、官方提供的组件通信方式","id":"-"},{"level":3,"text":"1、props传值","id":"1-props-"},{"level":3,"text":"2、emit通信","id":"2-emit-"},{"level":3,"text":"3、Vue2的\\$bus","id":"3-vue2-bus"},{"level":3,"text":"4、Vue3的provide/inject","id":"4-vue3-provide-inject"},{"level":3,"text":"5、pinia","id":"5-pinia"},{"level":3,"text":"6、作用域插槽","id":"6-"},{"level":2,"text":"二、逆向插槽 —— 子组件向父组件传递组件","id":"-"},{"level":2,"text":"三、到底什么时候vue会失去响应性","id":"-vue-"},{"level":3,"text":"3.1 对象初始化完成后，对对象的属性进行添加或者删除，都不会有响应式（但是v-model好像又是例外）","id":"3-1-v-model-"},{"level":3,"text":"3.2 数组初始化完成后，通过索引修改数组，或者直接修改数组的长度，都不会有响应式","id":"3-2-"},{"level":3,"text":"3.3 下面是一些不会失去响应式的情况/能让vue具有响应式的情况","id":"3-3-vue-"}]}],["$L4","$L5"],"$L6"]}],"loading":null,"isPartial":false}
+4:["$","script","script-0",{"src":"/front-show/_next/static/chunks/5da133392e458ca5.js","async":true}]
+5:["$","script","script-1",{"src":"/front-show/_next/static/chunks/f312313765e8fe24.js","async":true}]
 6:["$","$L7",null,{"children":["$","$8",null,{"name":"Next.MetadataOutlet","children":"$@9"}]}]
 9:null
