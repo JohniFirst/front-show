@@ -5,12 +5,12 @@ import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import rehypeHighlight from "rehype-highlight";
 import Navigation from "../../components/Navigation";
-import QrFloatingButton from "./QrFloatingButton";
+import FloatingButtonGroup from "./FloatingButtonGroup";
 import TableOfContents from "./TableOfContents";
 import StaticImage from "../../components/StaticImage";
 
 // Define BlogPost interface
-interface BlogPost {
+export interface BlogPost {
   id: string;
   title: string;
   date: string;
@@ -306,7 +306,7 @@ export default function BlogPostClient({
             </div>
 
             {/* Table of Contents - Always visible on the right side */}
-            <div className="w-full lg:w-64 flex-shrink-0 mt-6 lg:mt-0 lg:ml-6">
+            <div className="hidden md:block w-full lg:w-64 flex-shrink-0 mt-6 lg:mt-0 lg:ml-6">
               <div className="lg:sticky lg:top-24">
                 <TableOfContents headings={headings} />
               </div>
@@ -314,8 +314,12 @@ export default function BlogPostClient({
           </div>
         </section>
 
-        {/* 二维码浮窗 */}
-        <QrFloatingButton articleId={post.id} />
+        {/* 统一浮动按钮组 */}
+        <FloatingButtonGroup
+          post={post}
+          showBackToTop={showBackToTop}
+          onScrollToTop={scrollToTop}
+        />
 
         <div className="text-center mt-8">
           <Link
@@ -327,31 +331,7 @@ export default function BlogPostClient({
         </div>
       </div>
 
-      {/* Back to Top Button -独立功能 */}
-      <button
-        onClick={scrollToTop}
-        className={`fixed bottom-24 right-6 w-14 h-14 bg-indigo-600 text-white rounded-full shadow-lg hover:bg-indigo-700 transition-all duration-300 z-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 flex items-center justify-center ${
-          showBackToTop
-            ? "opacity-100 translate-y-0"
-            : "opacity-0 translate-y-4 pointer-events-none"
-        }`}
-        aria-label="回到顶部"
-      >
-        <svg
-          className="w-6 h-6"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M5 10l7-7m0 0l7 7m-7-7v18"
-          />
-        </svg>
-      </button>
+
     </>
   );
 }
