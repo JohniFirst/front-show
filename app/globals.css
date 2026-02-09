@@ -77,9 +77,11 @@ body {
 .cursor {
   display: inline-block;
   width: 2px;
+  height: 1em;
   margin-left: 2px;
   background-color: currentColor;
   animation: blink 1s infinite;
+  vertical-align: middle;
 }
 
 @keyframes blink {

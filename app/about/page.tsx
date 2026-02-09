@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Navigation from "../components/Navigation";
 import GsapElementAnimation from "../components/GsapElementAnimation";
+import RadarChartComponent from "../components/charts/RadarChart";
 
 export const metadata: Metadata = {
   title: "关于我们 | 前端开发-响应式网站、小程序、Flutter的安卓ios跨端App",
@@ -124,7 +125,7 @@ export default function AboutPage() {
 
             <GsapElementAnimation animationType="slideIn" delay={0.8}>
               <div
-                className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-8"
+                className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-8 mb-12"
                 role="region"
                 aria-labelledby="our-values"
               >
@@ -155,6 +156,24 @@ export default function AboutPage() {
                     </li>
                   ))}
                 </ul>
+              </div>
+            </GsapElementAnimation>
+
+            <GsapElementAnimation animationType="slideIn" delay={0.9}>
+              <div
+                className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-8"
+                role="region"
+                aria-labelledby="skills-chart"
+              >
+                <h2
+                  id="skills-chart"
+                  className="text-2xl font-bold text-gray-900 dark:text-white mb-4 text-center"
+                >
+                  技术能力展示
+                </h2>
+                <div className="h-[500px]">
+                  <RadarChartComponent />
+                </div>
               </div>
             </GsapElementAnimation>
 

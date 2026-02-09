@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Navigation from "./components/Navigation";
 import GsapElementAnimation from "./components/GsapElementAnimation";
+import GsapTextAnimation from "./components/GsapTextAnimation";
 
 export const metadata: Metadata = {
   title: "首页 | 前端开发-响应式网站、小程序、Flutter的安卓ios跨端App",
@@ -35,12 +36,15 @@ export default function Home() {
 
             <div className="relative z-10">
               <div className="text-center mb-16">
-                <GsapElementAnimation animationType="fadeIn" delay={0.2}>
-                  <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6 bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600">
-                    <span>前端开发专家</span>
-                    <span className="cursor">|</span>
-                  </h1>
-                </GsapElementAnimation>
+                <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6 bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600">
+                  <GsapTextAnimation
+                    animationType="typing"
+                    speed={100}
+                    loop={false}
+                  >
+                    前端开发专家
+                  </GsapTextAnimation>
+                </h1>
 
                 <GsapElementAnimation animationType="slideIn" delay={0.4}>
                   <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-10">
