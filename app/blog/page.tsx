@@ -4,6 +4,7 @@ import type { BlogPost } from "./page.server";
 import Link from "next/link";
 import Navigation from "../components/Navigation";
 import StaticImage from "../components/StaticImage";
+import { getAllBlogPosts } from "@/lib/blog";
 
 import { useState, useEffect } from "react";
 
@@ -158,10 +159,6 @@ function BlogPageClient({ posts }: { posts: BlogPost[] }) {
 }
 
 export default async function BlogPage() {
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL || ""}/api/blog`,
-    { next: { revalidate: 3600 } }
-  );
-  const posts = await response.json();
+  const posts = await getAllBlogPosts();
   return <BlogPageClient posts={posts} />;
 }
