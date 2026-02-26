@@ -1,4 +1,3 @@
-import type { BlogPost } from "./page.server";
 import { getAllBlogPosts } from "./page.server";
 import BlogPageClient from "./page.client";
 
