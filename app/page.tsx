@@ -5,9 +5,9 @@ import GsapElementAnimation from "./components/GsapElementAnimation";
 import GsapTextAnimation from "./components/GsapTextAnimation";
 
 export const metadata: Metadata = {
-  title: "首页 | 前端开发-响应式网站、小程序、Flutter的安卓ios跨端App",
+  title: "首页 | 个人前端开发作品集",
   description:
-    "欢迎来到专业前端开发服务网站。我们提供响应式网站设计、小程序开发、Flutter跨平台移动应用开发服务。",
+    "欢迎来到我的个人前端开发作品集。我是一名专业的前端开发工程师，专注于响应式网站设计、小程序开发和Flutter跨平台应用开发。",
   alternates: {
     canonical: "https://JohniFirst.github.io/front-show/",
   },
@@ -42,13 +42,13 @@ export default function Home() {
                     speed={100}
                     loop={false}
                   >
-                    前端开发专家
+                    前端开发工程师
                   </GsapTextAnimation>
                 </h1>
 
                 <GsapElementAnimation animationType="slideIn" delay={0.4}>
                   <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-10">
-                    专业的前端开发服务，涵盖响应式网站、小程序、Flutter跨平台应用开发
+                    专注于响应式网站设计、小程序开发和Flutter跨平台应用开发的专业前端工程师
                   </p>
                 </GsapElementAnimation>
 
@@ -58,18 +58,18 @@ export default function Home() {
                       <Link
                         href="/about"
                         className="px-8 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-medium rounded-lg hover:from-indigo-700 hover:to-purple-700 transition-all shadow-lg hover:shadow-xl"
-                        aria-label="了解我们的服务详情"
+                        aria-label="了解我的专业背景"
                       >
-                        了解我们
+                        了解我
                       </Link>
                     </div>
                     <div className="transform transition-transform duration-300 hover:scale-105 active:scale-95">
                       <Link
-                        href="/contact"
+                        href="/portfolio"
                         className="px-8 py-3 bg-white dark:bg-gray-800 text-gray-900 dark:text-white font-medium rounded-lg border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 transition-all shadow-lg hover:shadow-xl"
-                        aria-label="联系我们获取报价"
+                        aria-label="查看我的作品集"
                       >
-                        联系我们
+                        我的作品
                       </Link>
                     </div>
                   </div>
@@ -217,15 +217,15 @@ export default function Home() {
                       准备开始您的项目？
                     </h2>
                     <p className="text-indigo-100 text-lg mb-6 max-w-2xl mx-auto">
-                      加入众多信赖我们专业前端开发服务的满意客户，让我们为您的业务打造卓越的数字化体验
+                      让我为您的业务打造卓越的数字化体验，提供专业的前端开发解决方案
                     </p>
                     <div className="transform transition-transform duration-300 hover:scale-105 active:scale-95">
                       <Link
                         href="/contact"
                         className="inline-block px-8 py-3 bg-white text-indigo-600 font-medium rounded-lg hover:bg-gray-100 transition-all shadow-lg hover:shadow-xl"
-                        aria-label="立即联系我们开始项目"
+                        aria-label="立即联系我开始项目"
                       >
-                        立即开始
+                        立即联系
                       </Link>
                     </div>
                   </div>

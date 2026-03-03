@@ -5,16 +5,16 @@ import GsapElementAnimation from "../components/GsapElementAnimation";
 import RadarChartComponent from "../components/charts/RadarChart";
 
 export const metadata: Metadata = {
-  title: "关于我们 | 前端开发-响应式网站、小程序、Flutter的安卓ios跨端App",
+  title: "关于我 | 个人前端开发作品集",
   description:
-    "我们是一家专业的前端开发公司，专注于响应式网站设计、小程序开发、Flutter跨平台应用开发。我们致力于为客户提供高质量的数字化解决方案。",
+    "我是一名专业的前端开发工程师，专注于响应式网站设计、小程序开发和Flutter跨平台应用开发。我致力于为客户提供高质量的数字化解决方案。",
   keywords: [
-    "前端开发公司",
+    "前端开发工程师",
     "响应式网站设计",
     "小程序开发",
     "Flutter开发",
     "UI/UX设计",
-    "前端开发团队",
+    "个人作品集",
     "数字化解决方案",
   ],
   alternates: {
@@ -24,33 +24,33 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   const stats = [
-    { number: "50+", label: "项目", description: "成功交付的解决方案" },
-    { number: "25+", label: "团队成员", description: "敬业的专业人士" },
-    { number: "8+", label: "年经验", description: "综合行业专业知识" },
+    { number: "30+", label: "项目", description: "成功交付的解决方案" },
+    { number: "5+", label: "年经验", description: "前端开发专业知识" },
+    { number: "10+", label: "技术栈", description: "熟练掌握的技术" },
   ];
 
   const values = [
     {
       title: "创新",
       description:
-        "我们拥抱尖端技术和创意解决方案，不断探索前端开发的新可能性。",
+        "我拥抱尖端技术和创意解决方案，不断探索前端开发的新可能性。",
       icon: "🚀",
     },
     {
       title: "诚信",
-      description: "我们相信诚实沟通和道德实践，与客户建立长期信任关系。",
+      description: "我相信诚实沟通和道德实践，与客户建立长期信任关系。",
       icon: "🤝",
     },
     {
-      title: "协作",
+      title: "专业",
       description:
-        "我们与客户密切合作，确保每个项目都能满足业务需求和用户期望。",
-      icon: "👥",
+        "我专注于每个项目的细节，确保交付高质量的前端解决方案。",
+      icon: "💼",
     },
     {
-      title: "卓越",
-      description: "我们力求在工作的每个细节上都做到完美，交付超越期望的产品。",
-      icon: "⭐",
+      title: "学习",
+      description: "我不断学习新技术和最佳实践，保持前端开发领域的专业知识。",
+      icon: "📚",
     },
   ];
 
@@ -63,10 +63,10 @@ export default function AboutPage() {
             <GsapElementAnimation animationType="fadeIn" delay={0.2}>
               <div className="text-center mb-12">
                 <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-                  关于我们
+                  关于我
                 </h1>
                 <p className="text-xl text-gray-600 dark:text-gray-300">
-                  了解更多关于我们的使命、愿景和团队的信息
+                  了解更多关于我的专业背景、技能和经验
                 </p>
               </div>
             </GsapElementAnimation>
@@ -75,23 +75,24 @@ export default function AboutPage() {
               <div
                 className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-8 mb-12"
                 role="region"
-                aria-labelledby="our-story"
+                aria-labelledby="my-story"
               >
                 <h2
-                  id="our-story"
+                  id="my-story"
                   className="text-2xl font-bold text-gray-900 dark:text-white mb-4"
                 >
-                  我们的故事
+                  我的故事
                 </h2>
                 <p className="text-gray-600 dark:text-gray-300 mb-6">
-                  公司成立于2023年，我们的初衷很简单：创造美观、实用且以用户为中心的数字体验。从最初由充满热情的开发人员和设计师组成的小团队，
-                  现已发展成为一支多元化的问题解决专家团队。
+                  我是一名拥有5年经验的前端开发工程师，专注于创建美观、实用且以用户为中心的数字体验。我热爱前端开发，因为它结合了技术与创意，
+                  让我能够将想法转化为实际可用的产品。
                 </p>
                 <p className="text-gray-600 dark:text-gray-300 mb-6">
-                  我们相信，优秀的数字产品源于深思熟虑的设计、简洁的代码以及对使用者的真诚同理心。我们承担的每一个项目都是学习、成长和产生积极影响的机会。
+                  我相信，优秀的前端开发不仅仅是编写代码，更是理解用户需求、设计直观的界面、优化性能，以及持续学习新技术。
+                  每一个项目对我来说都是一次学习和成长的机会。
                 </p>
                 <p className="text-gray-600 dark:text-gray-300">
-                  凭借多年的行业经验，我们为各种规模的企业提供专业的前端开发服务，帮助他们实现数字化转型目标。
+                  我为各种规模的企业提供专业的前端开发服务，帮助他们实现数字化转型目标，提升用户体验，增强品牌价值。
                 </p>
               </div>
             </GsapElementAnimation>
@@ -127,13 +128,13 @@ export default function AboutPage() {
               <div
                 className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-8 mb-12"
                 role="region"
-                aria-labelledby="our-values"
+                aria-labelledby="my-values"
               >
                 <h2
-                  id="our-values"
+                  id="my-values"
                   className="text-2xl font-bold text-gray-900 dark:text-white mb-4"
                 >
-                  我们的价值观
+                  我的价值观
                 </h2>
                 <ul className="space-y-6">
                   {values.map((value, index) => (

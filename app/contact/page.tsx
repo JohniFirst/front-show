@@ -47,10 +47,10 @@ export default function ContactPage() {
             <GsapElementAnimation animationType="fadeIn" delay={0.2}>
               <div className="text-center mb-12">
                 <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-                  联系我们
+                  联系我
                 </h1>
                 <p className="text-xl text-gray-600 dark:text-gray-300">
-                  有问题吗？我们很想听到您的声音
+                  有问题吗？我很想听到您的声音
                 </p>
               </div>
             </GsapElementAnimation>
@@ -59,7 +59,7 @@ export default function ContactPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                 <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-8">
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-                    给我们发送消息
+                    给我发送消息
                   </h2>
 
                   {submitSuccess && (
@@ -244,12 +244,12 @@ export default function ContactPage() {
                         </div>
                         <div className="ml-4">
                           <h3 className="text-lg font-medium text-gray-900 dark:text-white">
-                            办公室
+                            位置
                           </h3>
                           <p className="text-gray-600 dark:text-gray-300 mt-1">
-                            北京市朝阳区建国路1号
+                            北京市朝阳区
                             <br />
-                            中国 北京 100000
+                            中国 北京
                           </p>
                         </div>
                       </div>
@@ -258,7 +258,7 @@ export default function ContactPage() {
 
                   <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-8">
                     <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-                      营业时间
+                      工作时间
                     </h2>
 
                     <div className="space-y-3">

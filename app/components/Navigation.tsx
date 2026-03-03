@@ -27,7 +27,7 @@ export default function Navigation() {
           <div className="flex items-center">
             <Link href="/" className="flex-shrink-0 flex items-center">
               <span className="text-xl font-bold text-indigo-600 dark:text-indigo-400">
-                MyApp
+                前端开发
               </span>
             </Link>
           </div>

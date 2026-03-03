@@ -8,7 +8,7 @@ export default function PortfolioPage() {
     {
       id: 1,
       title: "电子商务平台",
-      description: "功能齐全的在线购物平台，具备支付处理和库存管理功能。",
+      description: "功能齐全的在线购物平台，具备支付处理和库存管理功能。负责前端开发和用户界面设计。",
       category: "网络应用",
       image: "/images/photo-1551434678-e076c223a692.avif",
       tags: ["React", "Node.js", "MongoDB"],
@@ -16,15 +16,15 @@ export default function PortfolioPage() {
     {
       id: 2,
       title: "移动银行应用",
-      description: "具有生物识别认证和实时交易的安全银行应用。",
+      description: "具有生物识别认证和实时交易的安全银行应用。负责Flutter跨平台开发。",
       category: "移动应用",
       image: "/images/photo-1555066931-4365d14bab8c.avif",
-      tags: ["React Native", "Firebase", "生物识别"],
+      tags: ["Flutter", "Firebase", "生物识别"],
     },
     {
       id: 3,
       title: "企业仪表板",
-      description: "用于企业分析和报告的数据可视化仪表板。",
+      description: "用于企业分析和报告的数据可视化仪表板。负责前端开发和数据可视化实现。",
       category: "仪表板",
       image: "/images/photo-1460925895917-afdab827c52f.avif",
       tags: ["Vue.js", "D3.js", "Express"],
@@ -32,26 +32,26 @@ export default function PortfolioPage() {
     {
       id: 4,
       title: "旅游预订系统",
-      description: "具备实时可用性和定价的综合旅游预订平台。",
+      description: "具备实时可用性和定价的综合旅游预订平台。负责前端开发和用户体验设计。",
       category: "网络应用",
       image: "/images/photo-1503220317375-aaad61436b1b.avif",
-      tags: ["Angular", "NestJS", "PostgreSQL"],
+      tags: ["React", "Node.js", "PostgreSQL"],
     },
     {
       id: 5,
       title: "医疗保健门户",
-      description: "用于病历、预约和远程医疗服务的患者门户。",
+      description: "用于病历、预约和远程医疗服务的患者门户。负责前端开发和响应式设计。",
       category: "网络应用",
       image: "/images/photo-1516321318423-f06f85e504b3.avif",
       tags: ["React", "GraphQL", "AWS"],
     },
     {
       id: 6,
-      title: "健身追踪器",
-      description: "用于锻炼追踪、营养监测和健康洞察的移动应用。",
-      category: "移动应用",
+      title: "微信小程序",
+      description: "为客户开发的微信小程序，提供产品展示和在线预约功能。负责全栈开发。",
+      category: "小程序",
       image: "/images/photo-1571019613454-1cb2f99b2d8b.avif",
-      tags: ["Flutter", "Redux", "HealthKit"],
+      tags: ["微信小程序", "JavaScript", "云开发"],
     },
   ];
 
@@ -64,10 +64,10 @@ export default function PortfolioPage() {
             <GsapElementAnimation animationType="fadeIn" delay={0.2}>
               <div className="text-center mb-16">
                 <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-                  我们的作品集
+                  我的作品集
                 </h1>
                 <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-                  探索我们成功的项目集锦，了解我们如何帮助企业实现数字化转型。
+                  探索我参与的项目，了解我如何帮助企业实现数字化转型。
                 </p>
               </div>
             </GsapElementAnimation>
@@ -85,7 +85,7 @@ export default function PortfolioPage() {
                     移动应用
                   </button>
                   <button className="px-4 py-2 text-sm font-medium rounded-md text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800">
-                    仪表板
+                    小程序
                   </button>
                 </div>
               </div>
@@ -158,14 +158,14 @@ export default function PortfolioPage() {
                       准备好启动您的项目？
                     </h2>
                     <p className="text-gray-600 dark:text-gray-300">
-                      让我们讨论您的想法，让您的愿景变成现实。
+                      让我帮您将想法变成现实，提供专业的前端开发解决方案。
                     </p>
                   </div>
                   <Link
                     href="/contact"
                     className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700"
                   >
-                    联系我们
+                    联系我
                   </Link>
                 </div>
               </div>

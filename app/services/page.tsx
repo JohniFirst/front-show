@@ -4,9 +4,9 @@ import Navigation from "../components/Navigation";
 import GsapElementAnimation from "../components/GsapElementAnimation";
 
 export const metadata: Metadata = {
-  title: "服务 | 前端开发-响应式网站、小程序、Flutter的安卓ios跨端App",
+  title: "服务 | 个人前端开发作品集",
   description:
-    "我们提供专业的前端开发服务，包括响应式网站设计、小程序开发、Flutter跨平台应用开发。使用最新的技术栈，为客户提供高质量的数字化解决方案。",
+    "我提供专业的前端开发服务，包括响应式网站设计、小程序开发、Flutter跨平台应用开发。使用最新的技术栈，为客户提供高质量的数字化解决方案。",
   keywords: [
     "前端开发服务",
     "响应式网站",
@@ -178,7 +178,7 @@ export default function ServicesPage() {
             <GsapElementAnimation animationType="fadeIn" delay={0.2}>
               <div className="text-center mb-16">
                 <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-                  我们的服务
+                  我的服务
                 </h1>
                 <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
                   专业的前端开发服务，助力您的业务数字化转型
@@ -252,13 +252,13 @@ export default function ServicesPage() {
                     准备好提升您的数字产品？
                   </h2>
                   <p className="text-indigo-100 text-lg mb-6 max-w-2xl mx-auto">
-                    联系我们讨论您的项目需求，获得专业的前端开发解决方案
+                    联系我讨论您的项目需求，获得专业的前端开发解决方案
                   </p>
                   <div className="transform transition-transform duration-300 hover:scale-105">
                     <Link
                       href="/contact"
                       className="inline-block px-8 py-3 bg-white text-indigo-600 font-medium rounded-lg hover:bg-gray-100 transition-all shadow-lg hover:shadow-xl"
-                      aria-label="联系我们开始项目"
+                      aria-label="联系我开始项目"
                     >
                       立即咨询
                     </Link>
