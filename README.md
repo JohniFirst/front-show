@@ -2,6 +2,8 @@
 
 This is a [Next.js](https://nextjs.org/) portfolio project deployed to GitHub Pages.
 
+https://johnifirst.github.io/front-show/
+
 ## Deployment to GitHub Pages
 
 ### Automatic Deployment (Recommended)
