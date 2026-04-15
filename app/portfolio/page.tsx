@@ -53,6 +53,14 @@ export default function PortfolioPage() {
       image: "/images/photo-1571019613454-1cb2f99b2d8b.avif",
       tags: ["微信小程序", "JavaScript", "云开发"],
     },
+    {
+      id: 7,
+      title: "OpenLayers 地理信息可视化平台",
+      description: "基于 OpenLayers 的地理信息数据可视化平台，支持多层地图叠加、空间分析和实时数据展示。负责前端架构设计和地图功能开发。",
+      category: "网络应用",
+      image: "/images/photo-1524661135-423995f22d0b.avif",
+      tags: ["OpenLayers", "React", "TypeScript", "GeoJSON"],
+    },
   ];
 
   return (
@@ -94,9 +102,10 @@ export default function PortfolioPage() {
             <GsapElementAnimation animationType="slideIn" delay={0.6}>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
                 {projects.map((project) => (
-                  <div
+                  <Link
                     key={project.id}
-                    className="bg-white dark:bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
+                    href={`/portfolio/${project.id}`}
+                    className="bg-white dark:bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 block"
                   >
                     <div className="h-48 overflow-hidden">
                       <StaticImage
@@ -127,7 +136,7 @@ export default function PortfolioPage() {
                           </span>
                         ))}
                       </div>
-                      <button className="text-indigo-600 dark:text-indigo-400 font-medium hover:text-indigo-800 dark:hover:text-indigo-300 text-sm flex items-center">
+                      <div className="text-indigo-600 dark:text-indigo-400 font-medium hover:text-indigo-800 dark:hover:text-indigo-300 text-sm flex items-center">
                         查看详情
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -143,9 +152,9 @@ export default function PortfolioPage() {
                             d="M9 5l7 7-7 7"
                           />
                         </svg>
-                      </button>
+                      </div>
                     </div>
-                  </div>
+                  </Link>
                 ))}
               </div>
             </GsapElementAnimation>

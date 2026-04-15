@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { StructuredData } from "./components/StructuredData";
+import SkipToContent from "./components/SkipToContent";
+import BackToTop from "./components/BackToTop";
+import Analytics from "./components/Analytics";
 
 export const metadata: Metadata = {
   title: "前端开发-响应式网站、小程序、Flutter的安卓ios跨端App",
@@ -67,8 +71,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="zh-CN">
+      <head>
+        <StructuredData />
+      </head>
       <body className="min-h-screen antialiased bg-white dark:bg-black text-gray-900 dark:text-white">
-        {children}
+        <SkipToContent />
+        <Analytics />
+        <main id="main-content" tabIndex={-1}>
+          {children}
+        </main>
+        <BackToTop />
       </body>
     </html>
   );

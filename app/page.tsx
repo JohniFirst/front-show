@@ -40,7 +40,7 @@ export default function Home() {
                   <GsapTextAnimation
                     animationType="typing"
                     speed={100}
-                    loop={false}
+                    loop={true}
                   >
                     前端开发工程师
                   </GsapTextAnimation>
